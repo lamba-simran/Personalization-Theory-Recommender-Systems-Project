@@ -4,7 +4,7 @@
 ## Installation
 
 ## Dataset
-Amazon product data : Video Games that contains 231,780 reviews for 50,953 products.
+Amazon product data : Video Games that contains 1,324,753 reviews for 50,953 products.
 
 ## Objective
 
