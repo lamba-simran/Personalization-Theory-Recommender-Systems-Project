@@ -112,7 +112,7 @@ def random_item_sampling(sample, relevant_data, wanted_size_by_category):
         last_batch_size = size - each_batch_size * 3
         cat = relevant_data[relevant_data['category'] == category]
         num_table = pd.crosstab(index=cat['asin'], columns="count")
-        quantile = list(num_table.quantile([.75, .95, .99])['count'])
+        quantile = list(num_table.quantile([.7, .85, .9])['count'])
         print("item ratings break down :", category, quantile)
         sample_id = num_table[num_table['count'] <= quantile[0]].sample(n=each_batch_size).index.tolist()
         sample_id += num_table[(num_table['count'] > quantile[0]) &
@@ -132,7 +132,7 @@ def random_item_sampling(sample, relevant_data, wanted_size_by_category):
 def random_user_sampling(relevant_data):
     each_batch_size = 5000
     num_table = pd.crosstab(index=relevant_data['reviewerID'], columns="count")
-    quantile = list(num_table.quantile([.75, .9, .95])['count'])
+    quantile = list(num_table.quantile([.9, .96, .985])['count'])
     print("user ratings break down : ", quantile)
     sample_id = num_table[num_table['count'] <= quantile[0]].sample(n=each_batch_size).index.tolist()
     sample_id += num_table[(num_table['count'] > quantile[0]) &
@@ -153,7 +153,7 @@ def main():
     # meta_clean = get_clean_data(meta)
     # relevant_data, distinct_user = merge_review_meta(meta_clean, reviews)
 
-    relevant_data = pd.read_csv('/Users/taeyoungchoi/Documents/Fall 17/Personalization Theory/personalization-theory/clean_data.csv')
+    relevant_data = pd.read_csv('/Users/taeyoungchoi/Documents/Fall 17/Personalization Theory/clean_data.csv')
     random_user_id = random_user_sampling(relevant_data)
     items_with_sampled_user = relevant_data[relevant_data['reviewerID'].isin(random_user_id)]
     distinct_user = items_with_sampled_user.drop_duplicates(['asin'])
