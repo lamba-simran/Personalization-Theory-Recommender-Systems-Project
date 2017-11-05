@@ -143,7 +143,7 @@ def random_user_sampling(relevant_data):
     distribution = num_table['count'].value_counts()
     distribution.iloc[[7]] = num_table[num_table['count'] > 7].sum().values[0]
     distribution = distribution.iloc[0:8]
-    distribution = distribution.rename(index={8: 'more than 7'})
+    distribution = distribution.rename(index={8: '> 7'})
     distribution.plot.bar()
 
     plt.show()
