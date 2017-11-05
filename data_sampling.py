@@ -1,7 +1,7 @@
-import pandas as pd
 import gzip
 import dateutil
 import math
+import matplotlib.pyplot as plt
 
 
 def parse(path):
@@ -100,6 +100,8 @@ def merge_review_meta(meta_clean, reviews):
     distinct_user = relevant_data.drop_duplicates(['asin'])
     rows = distinct_user.shape[0]
     cat_prop = pd.crosstab(index=distinct_user['category'], columns="count")
+    cat_prop.hist('count')
+    plt.show()
     print(cat_prop['count'].div(rows).multiply(100))
 
     return relevant_data, distinct_user
@@ -112,6 +114,8 @@ def random_item_sampling(sample, relevant_data, wanted_size_by_category):
         last_batch_size = size - each_batch_size * 3
         cat = relevant_data[relevant_data['category'] == category]
         num_table = pd.crosstab(index=cat['asin'], columns="count")
+        num_table.plot.bar()
+        plt.show()
         quantile = list(num_table.quantile([.7, .85, .9])['count'])
         print("item ratings break down :", category, quantile)
         sample_id = num_table[num_table['count'] <= quantile[0]].sample(n=each_batch_size).index.tolist()
@@ -132,8 +136,12 @@ def random_item_sampling(sample, relevant_data, wanted_size_by_category):
 def random_user_sampling(relevant_data):
     each_batch_size = 5000
     num_table = pd.crosstab(index=relevant_data['reviewerID'], columns="count")
-    quantile = list(num_table.quantile([.9, .96, .985])['count'])
+
+    quantile = list(num_table.quantile([.9, .95, .985])['count'])
     print("user ratings break down : ", quantile)
+    num_table['count'].value_counts().plot.bar()
+    plt.show()
+
     sample_id = num_table[num_table['count'] <= quantile[0]].sample(n=each_batch_size).index.tolist()
     sample_id += num_table[(num_table['count'] > quantile[0]) &
                            (num_table['count'] <= quantile[1])].sample(n=each_batch_size).index.tolist()
@@ -160,6 +168,8 @@ def main():
     print("---------------------------------------------\n")
     rows = distinct_user.shape[0]
     cat_prop = pd.crosstab(index=distinct_user['category'], columns="count")
+    cat_prop.plot.bar()
+    plt.show()
     wanted_size_by_category = cat_prop['count'].div(rows).multiply(100).to_dict()
     for item in wanted_categories:
         wanted_size_by_category[item] = math.ceil(wanted_size_by_category[item])
@@ -177,9 +187,11 @@ def main():
     sampled_items = random_item_sampling(sample, items_with_sampled_user, wanted_size_by_category)
 
     hundred_items = items_with_sampled_user[items_with_sampled_user['asin'].isin(sampled_items)].drop(['Unnamed: 0', 'date'], 1)
+    print(len(set(hundred_items.asin)), len(set(hundred_items.reviewerID)))
     hundred_items.to_csv("sampled.csv")
     '''
     '''
+
 
 if __name__ == "__main__":
     main()
