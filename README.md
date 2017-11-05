@@ -39,7 +39,7 @@ After sampling users, we sampled items according to the distribution of the vide
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/category_distribution.png" width="720"></td></tr>
 </table>
 
-This sampling method resulted in the sample of 100 items and 2,916 users by incorporating the distribution of the level of activities of users and the distribution of popularity and category of items.
+This sampling method resulted in the sample of 100 items and 2,916 users by incorporating the distribution of the level of activities of users, and the distribution of popularity and category of items.
 
 
 ## Objective
