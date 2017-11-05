@@ -140,9 +140,13 @@ def random_user_sampling(relevant_data):
 
     quantile = list(num_table.quantile([.9, .95, .985])['count'])
     print("user ratings break down : ", quantile)
-    num_table['count'].value_counts().plot.bar()
-    plt.show()
+    distribution = num_table['count'].value_counts()
 
+    distribution.iloc[[7]] = num_table[num_table['count'] > 7].sum().values[0]
+    distribution = distribution.iloc[0:8]
+    distribution.plot.bar()
+
+    plt.show()
     sample_id = num_table[num_table['count'] <= quantile[0]].sample(n=each_batch_size).index.tolist()
     sample_id += num_table[(num_table['count'] > quantile[0]) &
                            (num_table['count'] <= quantile[1])].sample(n=each_batch_size).index.tolist()
@@ -169,8 +173,9 @@ def main():
     print("---------------------------------------------\n")
     rows = distinct_user.shape[0]
     cat_prop = pd.crosstab(index=distinct_user['category'], columns="count")
-    cat_prop.plot.bar()
-    plt.show()
+
+    # cat_prop.plot.bar()
+    # plt.show()
     wanted_size_by_category = cat_prop['count'].div(rows).multiply(100).to_dict()
     for item in wanted_categories:
         wanted_size_by_category[item] = math.ceil(wanted_size_by_category[item])
