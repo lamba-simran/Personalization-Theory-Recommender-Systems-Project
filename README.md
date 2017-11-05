@@ -19,22 +19,22 @@ Xbox model was released in 2010. Wii Family Edition was released in 2011, and th
 was released in 2012, followed by PlayStation 4 in 2013. Any reviews submitted before these years seemed irrelevant, if
 we were to give recommendations to current users.
 
-We explored the distribution of users, who submitted reviews after January 1st, 2011. We have a extremely skewed dataset
- with 75% of users submitted only single review and 95% of users submitted less than two reviews. Furthermore, 99% of
- users submitted less than four reviews. If we were to sample 10,000 users using this highly sparse
+We explored the distribution of users, who submitted reviews after January 1st, 2011. As seen in the histogram below, we have a extremely skewed dataset with 75% of users submitted only single review and 95% of users submitted less than two reviews. Furthermore, 99% of users submitted less than four reviews. If we were to sample 10,000 users using this highly sparse
  data, we weren't able to meet the requirement, which is the size of the dataset being less than 100 items.
 
+<table class="image">
+<caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/user_distribution.png" width="720"></td></tr>
+</table>
 
 However, we also do not treat heavy reviewers as same as inactive users, because these few heavy users creates bigger
 impacts than normal users do. As a result, we adjusted our sampling method to sample users with single rating to account
  for approximately 25% of the data. By artificially feeding more data, we could better evaluate our model performances.
  Otherwise, all models perform poorly by having a n x n dataset with nearly n non-zero entries.
  
+
+
 <table class="image">
-<caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
-<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/user_distribution.png" width="720"></td></tr>
-</table>
- <table class="image">
 <caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/category_distribution.png" width="720"></td></tr>
 </table>
