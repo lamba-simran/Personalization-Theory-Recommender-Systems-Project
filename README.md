@@ -24,7 +24,7 @@ We explored the distribution of users, who submitted reviews after January 1st, 
 
 <table class="image">
 <caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
-<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/rating_distribution.png" width="720"></td></tr>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/user_distribution.png" width="720"></td></tr>
 </table>
 
 However, we also did not want to treat heavy reviewers as same as inactive users, because these few heavy users creates bigger
