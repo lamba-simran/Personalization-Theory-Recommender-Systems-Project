@@ -29,8 +29,15 @@ However, we also do not treat heavy reviewers as same as inactive users, because
 impacts than normal users do. As a result, we adjusted our sampling method to sample users with single rating to account
  for approximately 25% of the data. By artificially feeding more data, we could better evaluate our model performances.
  Otherwise, all models perform poorly by having a n x n dataset with nearly n non-zero entries.
-![image](https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/user_distribution.png)
-![image](https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/category_distribution.png)
+ 
+<table class="image">
+<caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/user_distribution.png" width="720"></td></tr>
+</table>
+ <table class="image">
+<caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/category_distribution.png" width="720"></td></tr>
+</table>
 
 ## Objective
 
