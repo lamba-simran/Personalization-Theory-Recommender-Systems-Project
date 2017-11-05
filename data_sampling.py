@@ -2,6 +2,7 @@ import gzip
 import dateutil
 import math
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def parse(path):
