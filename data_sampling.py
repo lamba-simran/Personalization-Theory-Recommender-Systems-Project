@@ -141,7 +141,8 @@ def random_user_sampling(relevant_data):
     quantile = list(num_table.quantile([.9, .95, .985])['count'])
     print("user ratings break down : ", quantile)
     distribution = num_table['count'].value_counts()
-    distribution.iloc[[7]] = num_table[num_table['count'] > 7].sum().values[0]
+
+    distribution.iloc[[7]] = num_table[num_table['count'] > 7].shape[0]
     distribution = distribution.iloc[0:8]
     distribution = distribution.rename(index={8: '> 7'})
     distribution.plot.bar()
