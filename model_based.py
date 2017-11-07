@@ -1,5 +1,5 @@
 import os
-from surprise import Reader, Dataset, GridSearch, SVD, SVDpp, NMF, accuracy, BaselineOnly
+from surprise import Reader, Dataset, GridSearch, SVD, SVDpp, NMF, accuracy, BaselineOnly, KNNWithZScore
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -45,6 +45,21 @@ baseline = BaselineOnly()
 baseline.train(training)
 predictions = baseline.test(testing)
 baseline_rmse = accuracy.rmse(predictions, verbose=True)
+
+
+knn_param_grid = {'k': [20,30, 40],
+             'sim_options': {'name': ['msd', 'cosine'],
+                              'min_support': [5,10],
+                              'user_based': [False]}
+              }
+knnz_grid_search = GridSearch(KNNWithZScore, knn_param_grid, measures=['RMSE'], verbose=False)
+knnz_grid_search.evaluate(data)
+param = grid_search.best_params['RMSE']
+print('KNNWithZScore:', param)
+knnz = KNNWithZScore(name=param['name'], min_support=param['min_support'], user_based=param['user_based'] )
+knnz.train(training)
+predictions = knnz.test(testing)
+knnz_rmse = accuracy.rmse(predictions, verbose=True)
 
 
 objects = ("SVD", "SVD++", "NMF", "Baseline")
