@@ -40,7 +40,7 @@ def baseline_rmse(training, testing):
 
 
 def knnz_rmse(data, training, testing):
-    knn_param_grid = {'k': [20,30, 40], 'sim_options': {'name': ['msd', 'cosine'], 'min_support': [5,10],
+    knn_param_grid = {'k': [20,30, 40], 'sim_options': {'name': ['msd', 'cosine', 'pearson'], 'min_support': [5,10],
                                                         'user_based': [False]}}
 
     knnz_grid_search = GridSearch(KNNWithZScore, knn_param_grid, measures=['RMSE'], verbose=False)
@@ -55,7 +55,7 @@ def knnz_rmse(data, training, testing):
 
 
 def knn_rmse(data, training, testing):
-    knn_param_grid = {'k': [20, 30, 40], 'sim_options': {'name': ['msd', 'cosine'], 'min_support': [5, 10],
+    knn_param_grid = {'k': [20, 30, 40], 'sim_options': {'name': ['msd', 'cosine', 'pearson'], 'min_support': [5, 10],
                                                          'user_based': [False]}}
     knn_grid_search = GridSearch(KNNBasic, knn_param_grid, measures=['RMSE'], verbose=False)
     knn_grid_search.evaluate(data)
@@ -69,7 +69,7 @@ def knn_rmse(data, training, testing):
 
 
 def knnm_rmse(data, training, testing):
-    knn_param_grid = {'k': [20,30, 40], 'sim_options': {'name': ['msd', 'cosine'], 'min_support': [5,10],
+    knn_param_grid = {'k': [20,30, 40], 'sim_options': {'name': ['msd', 'cosine', 'pearson'], 'min_support': [5,10],
                                                         'user_based': [False]}}
     knnm_grid_search = GridSearch(KNNWithMeans, knn_param_grid, measures=['RMSE'], verbose=False)
     knnm_grid_search.evaluate(data)
@@ -116,3 +116,10 @@ performance = [svd_rmse, svdpp_rmse, nmf_rmse, baseline_rmse, knnz_rmse, knn_rms
 plt.bar(y_pos, performance, align='center', alpha=0.1)
 plt.xticks(y_pos, objects)
 plt.show()
+
+# SVD: {'n_factors': 25, 'n_epochs': 40}
+# SVDpp: {'n_factors': 25, 'n_epochs': 10}
+# NMF: {'n_factors': 45, 'n_epochs': 50}
+# KNNWithZScore: {'k': 20, 'sim_options': {'name': 'cosine', 'min_support': 5, 'user_based': False}}
+# KNNBasic: {'k': 20, 'sim_options': {'name': 'msd', 'min_support': 10, 'user_based': False}}
+# KNNWithMeans: {'k': 20, 'sim_options': {'name': 'pearson', 'min_support': 5, 'user_based': False}}
