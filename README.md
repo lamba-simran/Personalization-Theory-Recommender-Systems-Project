@@ -263,4 +263,10 @@ As we can observe, the coverage % does not improve much between top 3 and top 5 
 
 
 ## Misc
- Top n predictions code: https://pypkg.com/pypi/scikit-surprise/f/examples/top_n_recommendations.py
+### Outline for the second part
+Dataset: 
+-expand our dataset and include all observations. Add more datasets connected with current Amazon Video Games, such as Electronics dataset, computer accessories dataset and more. So, that we can recommend related products i.e. if user has bought a certain video game, we can recommend graphic carts, certain type of keyboards and etc. 
+
+Model: 
+We want to use parallel hybrid model, which includes SVD++, Approximate nearest neighbors, recommender for novelty or serendipity, ALS collaborative filtering using Spark and Frequent pattern mining / Association rules using Spark
+
