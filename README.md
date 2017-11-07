@@ -92,19 +92,19 @@ The key algorithms used are described below:
 
 * KNN Basic - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
 <table class="image">
-<caption align="bottom">Pearson Similarity</caption>
+<caption align="bottom">KNN Basic</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic.png"></td></tr>
 </table>
 
 * KNN With Means - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
 <table class="image">
-<caption align="bottom">Pearson Similarity</caption>
+<caption align="bottom">KNN With Means</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithMeans.png"></td></tr>
 </table>
 
 * KNN With Z-Score - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
 <table class="image">
-<caption align="bottom">Pearson Similarity</caption>
+<caption align="bottom">KNN With Z-Score</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithZScore.png"></td></tr>
 </table>
 
