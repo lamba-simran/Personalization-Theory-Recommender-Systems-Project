@@ -52,7 +52,7 @@ Accuarcy of recommendations is of paramount importance, and we will be using Roo
 
 We have primarily used Neighbor based and Model Based Recommendation stystems to obtainrecommendations for our data. We utilized scikit-surprise 1.0.4 library in python for the purposes of creating recommendtaions.
 
-# Neighbor based Systems:
+### Neighbor based Systems:
 
 For neighbor based systems, we utilized memory based collaborative filtering algorithms that are directly derived from a basic nearest neighbors approach. For each of these algorithms, the actual number of neighbors that are aggregated to compute an estimation is necessarily less than or equal to k. 
 
@@ -108,7 +108,7 @@ The key algorithms used are described below:
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithZScore.png"></td></tr>
 </table>
 
-# Model Based: 
+### Model Based: 
 For Model Based implementation of the recommender system we used matrix factorisation technique and primarily focused our attention on SVD, SVD++ and NMF. To implement those algorithms we used sci kit surpise python package, which already has all the predefined procedures. 
 SVD
 The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize. When baselines are not used, this is equivalent to Probabilistic Matrix Factorization.
@@ -126,7 +126,7 @@ You also have control over the learning rate γ and the regularization term λ. 
  
  
 Parameters:
-n_factors – The number of factors. Default is 100.
+n_factors – The number of factors. Default is 100. "\n"
 n_epochs – The number of iteration of the SGD procedure. Default is 20.
 biased (bool) – Whether to use baselines (or biases). See note above. Default is True.
 init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
@@ -146,11 +146,62 @@ verbose – If True, prints the current epoch. Default is False.
 
 SVD++
 The SVD++ algorithm, an extension of SVD taking into account implicit ratings.
+<table class="image">
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/svdpp_screenshot_1.png"></td></tr>
+</table>
 
+Where the y_j terms are a new set of item factors that capture implicit ratings. Here, an implicit rating describes the fact that a user uu rated an item j, regardless of the rating value.
+If user uu is unknown, then the bias bubu and the factors pupu are assumed to be zero. The same applies for item i with b_i, q_i and y_i.  Just as for SVD, the parameters are learned using a SGD on the regularized squared error objective.
+Baselines are initialized to 0. User and item factors are randomly initialized according to a normal distribution, which can be tuned using the init_mean and init_std_dev parameters.
+You have control over the learning rate γ and the regularization term λ. Both can be different for each kind of parameter (see below). By default, learning rates are set to 0.005 and regularization terms are set to 0.02.
+Parameters:
+n_factors – The number of factors. Default is 20.
+n_epochs – The number of iteration of the SGD procedure. Default is 20.
+init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
+init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.
+lr_all – The learning rate for all parameters. Default is 0.007.
+reg_all – The regularization term for all parameters. Default is 0.02.
+lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.
+lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.
+lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.
+lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.
+lr_yj – The learning rate for yjyj. Takes precedence over lr_all if set. Default is None.
+reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.
+reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.
+reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.
+reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.
+reg_yj – The regularization term for yjyj. Takes precedence over reg_all if set. Default is None.
+verbose – If True, prints the current epoch. Default is False.
 
+NMF
+A collaborative filtering algorithm based on Non-negative Matrix Factorization.
+This algorithm is very similar to SVD. The prediction r̂ ui is set as:
+<table class="image">
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/NMF_screenshot_1.png"></td></tr>
+</table>
 
+where user and item factors are kept positive. 
+The optimization procedure is a (regularized) stochastic gradient descent with a specific choice of step size that ensures non-negativity of factors, provided that their initial values are also positive.
 
+<table class="image">
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/NMF_screenshot_2.png"></td></tr>
+</table>
+This algorithm is highly dependent on initial values. User and item factors are uniformly initialized between init_low and init_high. 
 
+ 
+Parameters:
+n_factors – The number of factors. Default is 15.
+n_epochs – The number of iteration of the SGD procedure. Default is 50.
+biased (bool) – Whether to use baselines (or biases). Default is False.
+reg_pu – The regularization term for users λuλu. Default is 0.06.
+reg_qi – The regularization term for items λiλi. Default is 0.06.
+reg_bu – The regularization term for bubu. Only relevant for biased version. Default is 0.02.
+reg_bi – The regularization term for bibi. Only relevant for biased version. Default is 0.02.
+lr_bu – The learning rate for bubu. Only relevant for biased version. Default is 0.005.
+lr_bi – The learning rate for bibi. Only relevant for biased version. Default is 0.005.
+init_low – Lower bound for random initialization of factors. Must be greater than 0 to ensure non-negative factors. Default is 0.
+init_high – Higher bound for random initialization of factors. Default is 1.
+verbose – If True, prints the current epoch. Default is False.
 
 ## Evaluation
 
