@@ -205,19 +205,8 @@ verbose – If True, prints the current epoch. Default is False.
 
 ## Evaluation
 
-### Accuracy
-To determine accuracy, we used evaluate() and gridsearch() from the surprise package:http://surprise.readthedocs.io/en/stable/evaluate.html?highlight=evaluate
-
-We used RMSE for comparison of accuracy of all the models. The code used is located in the file:https://github.com/taeyoung-choi/personalization-theory/blob/master/accuracy_coverage.py
-
-
-Following are the figures for all the models:
-
-<table class="image">
-<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/model_accuracy.png"></td></tr>
-</table>
-
-Furthermore, we varied hyper parameters for all models to check the effect on RMSE. Here is the relationship between RMSE and hyperparameters for SVDpp and KNNBasic:
+### Hyper-parameters and their effect on accuracy
+We varied hyper parameters for all models to check the effect on RMSE. Here is the relationship between RMSE and hyperparameters for SVDpp and KNNBasic (as they had the best scores for model based and neighbor based methods):
 
 <table class="image">
 <caption align="bottom">SVDpp: RMSE vs. Hyperparameters</caption>
@@ -229,35 +218,68 @@ Furthermore, we varied hyper parameters for all models to check the effect on RM
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic RMSE.png"></td></tr>
 </table>
 
+
+### Accuracy
+To determine accuracy, we used evaluate() and gridsearch() from the surprise package:http://surprise.readthedocs.io/en/stable/evaluate.html?highlight=evaluate
+
+We used RMSE for comparison of accuracy of all the models. The code used is located in the file:https://github.com/taeyoung-choi/personalization-theory/blob/master/accuracy_coverage.py
+
+
+Following are the figures for all the models:
+
+<table class="image">
+<caption align="bottom">RMSE values</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/model_accuracy.png"></td></tr>
+</table>
+
+
 ### Coverage
 
 For coverage, we used top n (where n=1,3,5) predictions to calculate the total number of unique recommendations over the test set using all algos. The above number was then divided by the total number of items in the sample.
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 1 </caption>
+<caption align="bottom"> Coverage: Top 1 (Percent) </caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top1.png"></td></tr>
 </table>
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 3 </caption>
+<caption align="bottom"> Coverage: Top 3 (Percent)</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top3.png"></td></tr>
 </table>
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 5 </caption>
+<caption align="bottom"> Coverage: Top 5 (Percent) </caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top5.png"></td></tr>
 </table>
 
 As we can observe, the coverage % does not improve much between top 3 and top 5 models.
 
 
-
 ### Run Time
 
+We utilized time() to calculate the training running time and test running time on the code to test the efficiency of the code, as it will play an important role in part two of the project.We used the following code:https://github.com/taeyoung-choi/personalization-theory/blob/master/Runtime_Scaling.ipynb
+
+The run times of all the algos are as follows:
+
+<table class="image">
+<caption align="bottom"> Run Time </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/Runtime%20plot.png"></td></tr>
+</table>
+
+As we can oberserve, the test running time is comparably higher for neighbor based methods than model based methods. This is a key consideration that you have to keep  in mind while adding a new user, as training of data sets can be done online, but test running times should be low for the method chosen.
 
 
+### Samples Scaling
 
+We also utilized multiple samples of the data of different sizes by changing the number of users in the sample.
+The following code was utilized to perform the scaling: https://github.com/taeyoung-choi/personalization-theory/blob/master/runtime_scalling.py
 
+This is the comparison of RMSE scores for all models, at different sample sizes:
+
+<table class="image">
+<caption align="bottom"> RMSE vs. Sample Size </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/Scaling%20plot.png"></td></tr>
+</table>
 
 
 
