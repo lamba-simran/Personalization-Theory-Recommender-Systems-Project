@@ -205,6 +205,35 @@ verbose – If True, prints the current epoch. Default is False.
 
 ## Evaluation
 
+# Accuracy
+To determine accuracy, we used evaluate() and gridsearch() from the surprise package:http://surprise.readthedocs.io/en/stable/evaluate.html?highlight=evaluate
+
+We used RMSE for comparison of accuracy of all the models. Following are the figures for all the models:
+
+<table class="image">
+<caption align="bottom">KNN Basic</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic.png"></td></tr>
+</table>
+
+Furthermore, we varied hyper parameters for all models to check the effect on RMSE. Here is the relationship between RMSE and hyperparameters for SVDpp and KNNBasic:
+
+<table class="image">
+<caption align="bottom">SVDpp: RMSE vs. Hyperparameters</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/SVDpp RMSE.png"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom">KNNBasic:RMSE vs. Hyperparametres </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic RMSE.png"></td></tr>
+</table>
+
+
+
+# Coverage
+
+
+# Run Time
+
 
 
 
