@@ -96,7 +96,7 @@ def svd_rmse(data, training, testing):
     return rmse
 
 
-def main():
+if __name__ == "__main__":
     file_path = os.path.expanduser('sampled_data.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data = Dataset.load_from_file(file_path, reader=reader)
@@ -117,9 +117,6 @@ def main():
     plt.bar(y_pos, performance, align='center', alpha=0.1)
     plt.xticks(y_pos, objects)
     plt.show()
-
-if __name__ == "__main__":
-    main()
 
 # SVD: {'n_factors': 25, 'n_epochs': 50}
 # RMSE: 0.4666
