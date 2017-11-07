@@ -311,7 +311,7 @@ if __name__ == "__main__":
     plt.bar(y_pos, performance, align='center', alpha=0.1)
     plt.xticks(y_pos, objects)
     plt.show()
-    
+
 # SVD: {'n_factors': 25, 'n_epochs': 50}
 # RMSE: 0.4666
 # SVDpp: {'n_factors': 25, 'n_epochs': 10}
