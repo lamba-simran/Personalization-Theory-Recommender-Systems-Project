@@ -1,5 +1,5 @@
 import os
-from surprise import Reader, Dataset, GridSearch, SVD, SVDpp, NMF, accuracy, BaselineOnly, KNNWithZScore
+from surprise import Reader, Dataset, GridSearch, SVD, SVDpp, NMF, accuracy, BaselineOnly, KNNWithZScore, KNNWithMeans, KNNBasic
 import numpy as np
 import matplotlib.pyplot as plt
 
