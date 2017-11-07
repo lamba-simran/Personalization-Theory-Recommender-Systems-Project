@@ -52,7 +52,7 @@ Accuarcy of recommendations is of paramount importance, and we will be using Roo
 
 We have primarily used Neighbor based and Model Based Recommendation stystems to obtainrecommendations for our data. We utilized scikit-surprise 1.0.4 library in python for the purposes of creating recommendtaions.
 
-# Neighbor based Systems:
+### Neighbor based Systems:
 
 For neighbor based systems, we utilized memory based collaborative filtering algorithms that are directly derived from a basic nearest neighbors approach. For each of these algorithms, the actual number of neighbors that are aggregated to compute an estimation is necessarily less than or equal to k. 
 
@@ -108,7 +108,7 @@ The key algorithms used are described below:
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithZScore.png"></td></tr>
 </table>
 
-# Model Based: 
+### Model Based: 
 For Model Based implementation of the recommender system we used matrix factorisation technique and primarily focused our attention on SVD, SVD++ and NMF. To implement those algorithms we used sci kit surpise python package, which already has all the predefined procedures. 
 SVD
 The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize. When baselines are not used, this is equivalent to Probabilistic Matrix Factorization.
