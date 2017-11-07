@@ -208,11 +208,14 @@ verbose – If True, prints the current epoch. Default is False.
 # Accuracy
 To determine accuracy, we used evaluate() and gridsearch() from the surprise package:http://surprise.readthedocs.io/en/stable/evaluate.html?highlight=evaluate
 
-We used RMSE for comparison of accuracy of all the models. Following are the figures for all the models:
+We used RMSE for comparison of accuracy of all the models. The code used is located in the file:https://github.com/taeyoung-choi/personalization-theory/blob/master/accuracy_coverage.py
+
+
+Following are the figures for all the models:
 
 <table class="image">
 <caption align="bottom">KNN Basic</caption>
-<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic.png"></td></tr>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/model_accuracy.png"></td></tr>
 </table>
 
 Furthermore, we varied hyper parameters for all models to check the effect on RMSE. Here is the relationship between RMSE and hyperparameters for SVDpp and KNNBasic:
@@ -227,9 +230,27 @@ Furthermore, we varied hyper parameters for all models to check the effect on RM
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic RMSE.png"></td></tr>
 </table>
 
-
-
 # Coverage
+
+For coverage, we used top n (where n=1,3,5) predictions to calculate the total number of unique recommendations over the test set using all algos. The above number was then divided by the total number of items in the sample.
+
+<table class="image">
+<caption align="bottom"> Coverage: Top 1 </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top1.png"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom"> Coverage: Top 3 </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top3.png"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom"> Coverage: Top 5 </caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top5.png"></td></tr>
+</table>
+
+As we can observe, the coverage % does not improve much between top 3 and top 5 models.
+
 
 
 # Run Time
