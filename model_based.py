@@ -61,6 +61,24 @@ knnz.train(training)
 predictions = knnz.test(testing)
 knnz_rmse = accuracy.rmse(predictions, verbose=True)
 
+knn_grid_search = GridSearch(KNNBasic, knn_param_grid, measures=['RMSE'], verbose=False)
+knn_grid_search.evaluate(data)
+param = knn_grid_search.best_params['RMSE']
+print('KNNBasic:', param)
+knn = KNNBasic(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
+knn.train(training)
+predictions = knnz.test(testing)
+knn_rmse = accuracy.rmse(predictions, verbose=True)
+
+knnm_grid_search = GridSearch(KNNWithMeans, knn_param_grid, measures=['RMSE'], verbose=False)
+knnm_grid_search.evaluate(data)
+param = knnm_grid_search.best_params['RMSE']
+print('KNNWithMeans:', param)
+knnm = KNNWithMeans(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
+knnm.train(training)
+predictions = knnm.test(testing)
+knnm_rmse = accuracy.rmse(predictions, verbose=True)
+
 
 objects = ("SVD", "SVD++", "NMF", "Baseline")
 y_pos = np.arange(len(objects))
