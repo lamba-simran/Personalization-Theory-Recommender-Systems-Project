@@ -54,9 +54,9 @@ knn_param_grid = {'k': [20,30, 40],
               }
 knnz_grid_search = GridSearch(KNNWithZScore, knn_param_grid, measures=['RMSE'], verbose=False)
 knnz_grid_search.evaluate(data)
-param = grid_search.best_params['RMSE']
+param = knnz_grid_search.best_params['RMSE']
 print('KNNWithZScore:', param)
-knnz = KNNWithZScore(name=param['name'], min_support=param['min_support'], user_based=param['user_based'] )
+knnz = KNNWithZScore(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
 knnz.train(training)
 predictions = knnz.test(testing)
 knnz_rmse = accuracy.rmse(predictions, verbose=True)
