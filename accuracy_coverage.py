@@ -3,6 +3,7 @@ from surprise import Reader, Dataset, GridSearch, SVD, SVDpp, NMF, accuracy, Bas
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import defaultdict
+import pandas as pd
 
 
 def get_top_n(predictions, n=10):
@@ -59,6 +60,10 @@ def svdpp(data, training, testing):
     grid_search.evaluate(data)
     param = grid_search.best_params['RMSE']
     print('SVDpp:', param)
+    # RMSE against parameters
+    result_df = pd.DataFrame.from_dict(grid_search.cv_results)
+    result_df.to_csv('svdpp_rmse_against_param.csv')
+
 
     # fit model using the optimized parameters
     svdpp = SVDpp(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
@@ -191,6 +196,10 @@ def knn(data, training, testing):
     knn_grid_search.evaluate(data)
     param = knn_grid_search.best_params['RMSE']
     print('KNNBasic:', param)
+    # RMSE against parameters
+    result_df = pd.DataFrame.from_dict(knn_grid_search.cv_results)
+    result_df.to_csv('knn_rmse_against_param.csv')
+
 
     # fit model using the optimized parameters
     knn = KNNBasic(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
@@ -287,14 +296,14 @@ if __name__ == "__main__":
     testing = training.build_anti_testset()
 
     # using created datasets, tune parameters, fit models and evaluate them
-    svd_rmse, svd_cov = svd(data, training, testing)
+    # svd_rmse, svd_cov = svd(data, training, testing)
     svdpp_rmse, svdpp_cov = svdpp(data, training, testing)
-    nmf_rmse, nmf_cov = nmf(data, training, testing)
-    baseline_rmse, baseline_cov = baseline(training, testing)
-    knnz_rmse, knnz_cov = knn_z(data, training, testing)
+    # nmf_rmse, nmf_cov = nmf(data, training, testing)
+    # baseline_rmse, baseline_cov = baseline(training, testing)
+    # knnz_rmse, knnz_cov = knn_z(data, training, testing)
     knn_rmse, knn_cov = knn(data, training, testing)
-    knnm_rmse, knnm_cov = knn_m(data, training, testing)
-
+    # knnm_rmse, knnm_cov = knn_m(data, training, testing)
+    quit()
     # plot accuracy of the models
     objects = ('SVD', 'SVD++', 'NMF', 'Baseline', 'KNNWithZScore', 'KNNBasic', 'KNNWithMeans')
     y_pos = np.arange(len(objects))
@@ -330,3 +339,52 @@ if __name__ == "__main__":
 # 56 28 44 7 33 47 34
 # top 5
 # 60 30 48 7 33 47 34
+
+'''
+        RMSE  n_factors                              params  \
+0   1.214042         25   {'n_factors': 25, 'n_epochs': 10}   
+1   1.216780         25   {'n_factors': 25, 'n_epochs': 20}   
+2   1.222389         25   {'n_factors': 25, 'n_epochs': 30}   
+3   1.227411         25   {'n_factors': 25, 'n_epochs': 40}   
+4   1.230893         25   {'n_factors': 25, 'n_epochs': 50}   
+5   1.216045         50   {'n_factors': 50, 'n_epochs': 10}   
+6   1.222550         50   {'n_factors': 50, 'n_epochs': 20}   
+7   1.225158         50   {'n_factors': 50, 'n_epochs': 30}   
+8   1.229170         50   {'n_factors': 50, 'n_epochs': 40}   
+9   1.232886         50   {'n_factors': 50, 'n_epochs': 50}   
+10  1.232142        100  {'n_factors': 100, 'n_epochs': 10}   
+11  1.231625        100  {'n_factors': 100, 'n_epochs': 20}   
+12  1.240150        100  {'n_factors': 100, 'n_epochs': 30}   
+13  1.245178        100  {'n_factors': 100, 'n_epochs': 40}   
+14  1.237289        100  {'n_factors': 100, 'n_epochs': 50}   
+15  1.240178        250  {'n_factors': 250, 'n_epochs': 10}   
+16  1.251083        250  {'n_factors': 250, 'n_epochs': 20}   
+17  1.257265        250  {'n_factors': 250, 'n_epochs': 30}   
+18  1.249362        250  {'n_factors': 250, 'n_epochs': 40}   
+19  1.255770        250  {'n_factors': 250, 'n_epochs': 50}   
+
+                     scores  
+0   {'RMSE': 1.21404179334}  
+1   {'RMSE': 1.21678007163}  
+2   {'RMSE': 1.22238914393}  
+3   {'RMSE': 1.22741081811}  
+4   {'RMSE': 1.23089330513}  
+5   {'RMSE': 1.21604527588}  
+6   {'RMSE': 1.22254963342}  
+7   {'RMSE': 1.22515791516}  
+8   {'RMSE': 1.22916954627}  
+9   {'RMSE': 1.23288626123}  
+10  {'RMSE': 1.23214219917}  
+11   {'RMSE': 1.2316249055}  
+12  {'RMSE': 1.24015004932}  
+13  {'RMSE': 1.24517837753}  
+14  {'RMSE': 1.23728865857}  
+15  {'RMSE': 1.24017785008}  
+16  {'RMSE': 1.25108348771}  
+17  {'RMSE': 1.25726534173}  
+18  {'RMSE': 1.24936227429}  
+19  {'RMSE': 1.25576988377}  
+'''
+
+'''
+'''

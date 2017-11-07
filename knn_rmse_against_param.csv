@@ -1,0 +1,19 @@
+,RMSE,k,params,scores
+0,1.2606660967396213,5,"{'k': 5, 'sim_options': {'name': 'msd', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+1,1.2576130830428813,5,"{'k': 5, 'sim_options': {'name': 'msd', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+2,1.2606660967396213,5,"{'k': 5, 'sim_options': {'name': 'cosine', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+3,1.2576130830428813,5,"{'k': 5, 'sim_options': {'name': 'cosine', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+4,1.250822869289801,5,"{'k': 5, 'sim_options': {'name': 'pearson', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2508228692898009}
+5,1.2576130830428813,5,"{'k': 5, 'sim_options': {'name': 'pearson', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+6,1.2606660967396213,10,"{'k': 10, 'sim_options': {'name': 'msd', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+7,1.2576130830428813,10,"{'k': 10, 'sim_options': {'name': 'msd', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+8,1.2606660967396213,10,"{'k': 10, 'sim_options': {'name': 'cosine', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+9,1.2576130830428813,10,"{'k': 10, 'sim_options': {'name': 'cosine', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+10,1.250822869289801,10,"{'k': 10, 'sim_options': {'name': 'pearson', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2508228692898009}
+11,1.2576130830428813,10,"{'k': 10, 'sim_options': {'name': 'pearson', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+12,1.2606660967396213,20,"{'k': 20, 'sim_options': {'name': 'msd', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+13,1.2576130830428813,20,"{'k': 20, 'sim_options': {'name': 'msd', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+14,1.2606660967396213,20,"{'k': 20, 'sim_options': {'name': 'cosine', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2606660967396213}
+15,1.2576130830428813,20,"{'k': 20, 'sim_options': {'name': 'cosine', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
+16,1.250822869289801,20,"{'k': 20, 'sim_options': {'name': 'pearson', 'min_support': 1, 'user_based': False}}",{'RMSE': 1.2508228692898009}
+17,1.2576130830428813,20,"{'k': 20, 'sim_options': {'name': 'pearson', 'min_support': 5, 'user_based': False}}",{'RMSE': 1.2576130830428813}
