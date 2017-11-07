@@ -44,7 +44,7 @@ def svdpp_rmse(data, training, testing):
     svdpp = SVDpp(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
     svdpp.train(training)
     predictions = svdpp.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
     rmse = accuracy.rmse(predictions, verbose=True)
 
     return rmse, top_n
@@ -59,7 +59,7 @@ def nmf_rmse(data, training, testing):
     nmf = NMF(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
     nmf.train(training)
     predictions = nmf.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
     rmse = accuracy.rmse(predictions, verbose=True)
     return rmse, top_n
 
@@ -68,7 +68,7 @@ def baseline_rmse(training, testing):
     baseline = BaselineOnly()
     baseline.train(training)
     predictions = baseline.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
 
     rmse = accuracy.rmse(predictions, verbose=True)
     return rmse, top_n
@@ -87,7 +87,7 @@ def knnz_rmse(data, training, testing):
     knnz.train(training)
     predictions = knnz.test(testing)
     rmse = accuracy.rmse(predictions, verbose=True)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
 
     return rmse, top_n
 
@@ -102,7 +102,7 @@ def knn_rmse(data, training, testing):
     knn = KNNBasic(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
     knn.train(training)
     predictions = knn.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
 
     rmse = accuracy.rmse(predictions, verbose=True)
     return rmse, top_n
@@ -118,15 +118,14 @@ def knnm_rmse(data, training, testing):
     knnm = KNNWithMeans(k=param['k'], name=param['sim_options']['name'], min_support=param['sim_options']['min_support'], user_based=param['sim_options']['user_based'] )
     knnm.train(training)
     predictions = knnm.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
 
     rmse = accuracy.rmse(predictions, verbose=True)
     return rmse, top_n
 
 
 def svd_rmse(data, training, testing):
-    # param_grid = {'n_factors': [25, 50, 100, 250], 'n_epochs': [10, 20, 30, 40, 50]}
-    param_grid = {'n_factors': [25], 'n_epochs': [50]}
+    param_grid = {'n_factors': [25, 50, 100, 250], 'n_epochs': [10, 20, 30, 40, 50]}
     grid_search = GridSearch(SVD, param_grid, measures=['RMSE'], verbose=False)
     grid_search.evaluate(data)
     param = grid_search.best_params['RMSE']
@@ -134,7 +133,7 @@ def svd_rmse(data, training, testing):
     svd = SVD(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
     svd.train(training)
     predictions = svd.test(testing)
-    top_n = get_top_n(predictions, n=3)
+    top_n = get_top_n(predictions, n=5)
     rmse = accuracy.rmse(predictions, verbose=True)
     return rmse, top_n
 
@@ -164,6 +163,7 @@ if __name__ == "__main__":
     objects = ('SVD', 'SVD++', 'NMF', 'Baseline', 'KNNWithZScore', 'KNNBasic', 'KNNWithMeans')
     y_pos = np.arange(len(objects))
     performance = [svd_cov, svdpp_cov, nmf_cov, baseline_cov, knnz_cov, knn_cov, knnm_cov]
+    print(svd_cov, svdpp_cov, nmf_cov, baseline_cov, knnz_cov, knn_cov, knnm_cov)
     plt.bar(y_pos, performance, align='center', alpha=0.1)
     plt.xticks(y_pos, objects)
     plt.show()
@@ -179,3 +179,9 @@ if __name__ == "__main__":
 # RMSE: 0.5045
 # KNNWithMeans: {'k': 5, 'sim_options': {'name': 'cosine', 'min_support': 5, 'user_based': False}}
 # RMSE: 1.2152
+# top 1
+# 23 15 24 2 26 33 25
+# top 3
+# 56 28 44 7 33 47 34
+# top 5
+# 56 27 44 7 33 47 34
