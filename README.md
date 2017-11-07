@@ -214,7 +214,6 @@ We used RMSE for comparison of accuracy of all the models. The code used is loca
 Following are the figures for all the models:
 
 <table class="image">
-<caption align="bottom">KNN Basic</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/model_accuracy.png"></td></tr>
 </table>
 
