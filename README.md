@@ -44,7 +44,9 @@ This sampling method resulted in the sample of 100 items and 2,916 users by inco
 
 ## Objective
 
-The business objective of the first part of the project is to compare neighbor based and model based recommendation systems on the Amazon Video Game dataset. Accuarcy of recommendations is of paramount importance, and we will be using Root Mean Square Error(RMSE) and Mean Absolute Error  (MAE) for the purpose. Moreover, the efficiency of the code was another key metric to be measured. We used multiple samples and multiple hyper-parameters for each recommendation model to compare obtain the best accuracy scores. 
+The objective of the first part of the project is to compare neighbor based and model based recommendation systems on the Amazon Video Game dataset. Accuracy and covergae in tandem hold the most business value for a company like Amazon. For instance, the least popular items tend to provide the most profit if bought, due to higher margins. However they are usually not recommended over popular items, as most recommender systems still put large focus only on accuracy, targeting only low hanging fruits. We want the best mix of accuracy and coverge, to not only provide th ebest recommendation, but from a business perspective, the most profitable recommendations
+
+Accuarcy of recommendations is of paramount importance, and we will be using Root Mean Square Error (RMSE) and Mean Absolute Error  (MAE). Moreover, the efficiency of the code was another key metric to be measured. We used multiple samples and multiple hyper-parameters for each recommendation model to compare obtain the best accuracy scores. Over and above that, we have attempted to go beyond accuracy to calculate the coverage of all of our models and compare them.The metric for coverage basically comprises of the total unique top - N recommendation given by each model over the test set, over the total number of items in the sample(100). 
 
 ## Algorithms
 
@@ -105,6 +107,10 @@ The key algorithms used are described below:
 <caption align="bottom">Pearson Similarity</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithZScore.png"></td></tr>
 </table>
+
+
+## Evaluation
+
 
 
 
