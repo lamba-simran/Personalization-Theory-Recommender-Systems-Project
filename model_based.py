@@ -47,7 +47,7 @@ predictions = baseline.test(testing)
 baseline_rmse = accuracy.rmse(predictions, verbose=True)
 
 
-objects = ("SVDbestRMSE", "SVDppbestRMSE", "NMFbestRMSE", "BaselinebestRMSE")
+objects = ("SVD", "SVD++", "NMF", "Baseline")
 y_pos = np.arange(len(objects))
 performance = [svd_rmse, svdpp_rmse, nmf_rmse, baseline_rmse]
 plt.bar(y_pos, performance, align='center', alpha=0.1)
