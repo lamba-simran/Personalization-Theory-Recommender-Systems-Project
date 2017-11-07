@@ -52,7 +52,7 @@ We have primarily used Neighbor based and Model Based Recommendation stystems to
 
 Neighbor based Systems:
 
-For neighbor based systems, we utilized algorithms that are directly derived from a basic nearest neighbors approach. For each of these algorithms, the actual number of neighbors that are aggregated to compute an estimation is necessarily less than or equal to k. 
+For neighbor based systems, we utilized memory based collaborative filtering algorithms that are directly derived from a basic nearest neighbors approach. For each of these algorithms, the actual number of neighbors that are aggregated to compute an estimation is necessarily less than or equal to k. 
 
 All neighbor based algorithms use a similarity measure to estimate a rating. The way they can be configured is done in a similar fashion as for baseline ratings: you just need to pass a sim_options argument at the creation of an algorithm. This argument is a dictionary with the following (all optional) keys:
 
@@ -84,7 +84,27 @@ All neighbor based algorithms use a similarity measure to estimate a rating. The
 
 *'shrinkage': Shrinkage parameter to apply (only relevant for pearson_baseline similarity). We have used the Default shrinkage which is 100.
 
+The important thing to note is that in the code is that we are using the same range of hyper paramerters for the three KNN based algorithms.For all KNN Basic, KNN With Means and KNN With ZScore, we are calculating cosine, msd and pearson similarity, while ranging k from 10 to 30 and and min_support from 1 to 5.
 
+The key algorithms used are described below:
+
+* KNN Basic - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
+<table class="image">
+<caption align="bottom">Pearson Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNBasic.png"></td></tr>
+</table>
+
+* KNN With Means - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
+<table class="image">
+<caption align="bottom">Pearson Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithMeans.png"></td></tr>
+</table>
+
+* KNN With Z-Score - It is a a basic collaborative filtering algorithm. The prediction r̂ is set as:
+<table class="image">
+<caption align="bottom">Pearson Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/KNNWithZScore.png"></td></tr>
+</table>
 
 
 
