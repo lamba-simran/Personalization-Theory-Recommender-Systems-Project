@@ -44,7 +44,52 @@ This sampling method resulted in the sample of 100 items and 2,916 users by inco
 
 ## Objective
 
+The business objective of the first part of the project is to compare neighbor based and model based recommendation systems on the Amazon Video Game dataset. Accuarcy of recommendations is of paramount importance, and we will be using Root Mean Square Error(RMSE) and Mean Absolute Error  (MAE) for the purpose. Moreover, the efficiency of the code was another key metric to be measured. We used multiple samples and multiple hyper-parameters for each recommendation model to compare obtain the best accuracy scores. 
+
 ## Algorithms
+
+We have primarily used Neighbor based and Model Based Recommendation stystems to obtainrecommendations for our data. We utilized scikit-surprise 1.0.4 library in python for the purposes of creating recommendtaions.
+
+Neighbor based Systems:
+
+For neighbor based systems, we utilized algorithms that are directly derived from a basic nearest neighbors approach. For each of these algorithms, the actual number of neighbors that are aggregated to compute an estimation is necessarily less than or equal to k. 
+
+All neighbor based algorithms use a similarity measure to estimate a rating. The way they can be configured is done in a similar fashion as for baseline ratings: you just need to pass a sim_options argument at the creation of an algorithm. This argument is a dictionary with the following (all optional) keys:
+
+*'name': The name of the similarity to use, as defined in the similarities module. Default is 'msd (mean square distance)'. The other measures include cosine similarity and pearson coefficient.
+
+<table class="image">
+<caption align="bottom">Mean Square Distance</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/MSD.png" width="720"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom">MSD Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/MSD%20Similarity.png" width="720"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom">Cosine Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/Cosine.png" width="720"></td></tr>
+</table>
+
+<table class="image">
+<caption align="bottom">Pearson Similarity</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/PearsonS.png" width="720"></td></tr>
+</table>
+
+*'user_based': Whether similarities will be computed between users or between items. This has a huge impact on the performance of a prediction algorithm. Default is True. For all the neighbor based recommendations algorithms, we used item based similarity, as it was providing with a better accuracymetrics as compared to user based metrics, as expected for a sparse data such as this one with a huge difference between number of users and items.
+
+*'min_support': The minimum number of common items (when 'user_based' is 'True') or minimum number of common users (when *'user_based' is 'False') for the similarity not to be zero. Simply put, if |Iuv|<min_support|Iuv|<min_support then sim(u,v)=0sim(u,v)=0. The same goes for items. We have used multiple values of min_support, and displayed 1 and 5 in the code.
+
+*'shrinkage': Shrinkage parameter to apply (only relevant for pearson_baseline similarity). We have used the Default shrinkage which is 100.
+
+
+
+
+
+
+
 
 
 ## Misc
