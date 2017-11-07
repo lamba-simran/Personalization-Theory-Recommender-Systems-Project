@@ -113,21 +113,47 @@ For Model Based implementation of the recommender system we used matrix factoris
 SVD
 The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize. When baselines are not used, this is equivalent to Probabilistic Matrix Factorization.
 <table class="image">
-<caption align="bottom">KNN With Z-Score</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/svd_screenshot_1.png"></td></tr>
 </table>
 
+If user u is unknown, then the bias b_u and the factors p_u are assumed to be zero. The same applies for item i_i with b_i and q_i.To estimate all the unknown, we minimize the following regularized squared error:
+<table class="image">
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/svd_screenshot_2.png"></td></tr>
+</table>
+
+where e_ui=r_ui−r̂_ui. These steps are performed over all the ratings of the trainset and repeated n_epochs times. Baselines are initialized to 0. User and item factors are randomly initialized according to a normal distribution, which can be tuned using the init_mean and init_std_dev parameters.
+You also have control over the learning rate γ and the regularization term λ. Both can be different for each kind of parameter (see below). By default, learning rates are set to 0.005 and regularization terms are set to 0.02.
+ 
+ 
+Parameters:
+n_factors – The number of factors. Default is 100.
+n_epochs – The number of iteration of the SGD procedure. Default is 20.
+biased (bool) – Whether to use baselines (or biases). See note above. Default is True.
+init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
+init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.
+lr_all – The learning rate for all parameters. Default is 0.005.
+reg_all – The regularization term for all parameters. Default is 0.02.
+lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.
+lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.
+lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.
+lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.
+reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.
+reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.
+reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.
+reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.
+verbose – If True, prints the current epoch. Default is False.
+
+
+SVD++
+The SVD++ algorithm, an extension of SVD taking into account implicit ratings.
+
+
+
+
+
 
 ## Evaluation
- Evaluation of the code is broadly divided into three major sections: Accuracy, Coverage, Run time.
- 
- Accuracy - 
- 
- 
- Coverage - 
- 
- 
- Run Time - 
+
 
 
 
