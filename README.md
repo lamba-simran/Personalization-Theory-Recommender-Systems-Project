@@ -119,7 +119,15 @@ The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize.
 
 
 ## Evaluation
-
+ Evaluation of the code is broadly divided into three major sections: Accuracy, Coverage, Run time.
+ 
+ Accuracy - 
+ 
+ 
+ Coverage - 
+ 
+ 
+ Run Time - 
 
 
 
