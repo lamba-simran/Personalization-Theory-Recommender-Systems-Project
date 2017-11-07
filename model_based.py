@@ -20,7 +20,6 @@ svd = SVD(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
 svd.train(training)
 predictions = svd.test(testing)
 svd_rmse = accuracy.rmse(predictions, verbose=True)
-print(svd_rmse)
 
 
 grid_search = GridSearch(SVDpp, param_grid, measures=['RMSE'], verbose=False)
@@ -31,7 +30,6 @@ svdpp = SVDpp(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
 svdpp.train(training)
 predictions = svdpp.test(testing)
 svdpp_rmse = accuracy.rmse(predictions, verbose=True)
-print(svdpp_rmse)
 
 nmf_param_grid = {'n_factors': [45, 50, 55, 60], 'n_epochs': [45, 50, 55]}
 grid_search = GridSearch(NMF, nmf_param_grid, measures=['RMSE'], verbose=False)
@@ -42,13 +40,11 @@ nmf = NMF(n_factors=param['n_factors'], n_epochs=param['n_epochs'])
 nmf.train(training)
 predictions = nmf.test(testing)
 nmf_rmse = accuracy.rmse(predictions, verbose=True)
-print(nmf_rmse)
 
 baseline = BaselineOnly()
 baseline.train(training)
 predictions = baseline.test(testing)
 baseline_rmse = accuracy.rmse(predictions, verbose=True)
-print(baseline_rmse)
 
 
 objects = ("SVDbestRMSE", "SVDppbestRMSE", "NMFbestRMSE", "BaselinebestRMSE")
