@@ -24,7 +24,7 @@ def load_data():
     reader = Reader(line_format='user item rating', sep=',')
     data2 = Dataset.load_from_file(file_path, reader=reader)
 
-    #for sample_full
+    #for full_sample
     file_path = os.path.expanduser('data/sampled_data.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data3 = Dataset.load_from_file(file_path, reader=reader)
