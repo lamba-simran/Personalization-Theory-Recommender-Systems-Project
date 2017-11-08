@@ -281,6 +281,14 @@ This is the comparison of RMSE scores for all models, at different sample sizes:
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/Scaling%20plot.png"></td></tr>
 </table>
 
+## Conslusions
+
+   Based on the evaluations above, we think that SVD++ is the best model to implement in this case, because it has the best accuracy and does better than the baseline. Even though running time for training is relatively big and the testing time is about the average across all models, we think that training could be done offline and thus overall running will time not be affected. Furthermore, the Coverage for SVD++ is close to 30%, which we find sufficient for this data. 
+
+As we know 90% of users rated only one product and the baseline algorithm gives average of all the ratings. In this case for our data, it means that for 90% of users, Baseline gives the same result as the actual rating. Thus, it is expected rmse of the Baseline to be so small and beating the accuracy of the Baseline. It means we are dping predictions better for more than 90% os users. 
+
+
+
 
 
 ## Misc
