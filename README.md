@@ -3,7 +3,7 @@
 
 ## Installation
 ```
-python setup.py install
+pip install --user personalization-theory
 ```
 
 ## Dataset
