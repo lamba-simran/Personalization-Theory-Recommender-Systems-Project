@@ -284,9 +284,9 @@ def svd(data, training, testing):
     return rmse, top_n
 
 
-if __name__ == "__main__":
+def main():
     # import data and divide it into 5-folds
-    file_path = os.path.expanduser('sample_700 copy.csv')
+    file_path = os.path.expanduser('sampled_data.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data = Dataset.load_from_file(file_path, reader=reader)
     data.split(n_folds=5)  # data can now be used normally
@@ -320,6 +320,10 @@ if __name__ == "__main__":
     plt.bar(y_pos, performance, align='center', alpha=0.1)
     plt.xticks(y_pos, objects)
     plt.show()
+
+
+if __name__ == "__main__":
+    main()
 
 # SVD: {'n_factors': 25, 'n_epochs': 50}
 # RMSE: 0.4666

@@ -197,8 +197,7 @@ def main():
     hundred_items = items_with_sampled_user[items_with_sampled_user['asin'].isin(sampled_items)].drop(['Unnamed: 0', 'date'], 1)
     print(len(set(hundred_items.asin)), len(set(hundred_items.reviewerID)))
     hundred_items.to_csv("sampled.csv")
-    '''
-    '''
+
 
 
 if __name__ == "__main__":

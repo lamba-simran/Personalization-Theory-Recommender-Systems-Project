@@ -1,7 +1,7 @@
 import pandas as pd
 import random
 
-df = pd.read_csv('sampled_data1.csv')
+df = pd.read_csv('sampled_data.csv')
 user_id = set(df['User'].values)
 batch1 = random.sample(user_id, 700)
 batch2 = random.sample(user_id, 1400)
