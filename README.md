@@ -110,7 +110,8 @@ The key algorithms used are described below:
 
 ### Model Based: 
 For Model Based implementation of the recommender system we used matrix factorization technique and primarily focused our attention on SVD, SVD++ and NMF. To implement those algorithms, we used scikit surprise python package, which already has all the predefined procedures. 
-SVD
+
+### 1.) SVD
 The famous SVD algorithm, as popularized by Simon Funk during the Netflix Prize. When baselines are not used, this is equivalent to Probabilistic Matrix Factorization.
 <table class="image">
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/svd_screenshot_1.png"></td></tr>
@@ -144,16 +145,20 @@ reg_qi – The regularization term for qiqi. Takes precedence over reg_all if se
 verbose – If True, prints the current epoch. Default is False.
 
 
-SVD++
+### 2.)SVD++
 The SVD++ algorithm, an extension of SVD taking into account implicit ratings.
 <table class="image">
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/svdpp_screenshot_1.png"></td></tr>
 </table>
 
 Where the y_j terms are a new set of item factors that capture implicit ratings. Here, an implicit rating describes the fact that a user uu rated an item j, regardless of the rating value.
+
 If user uu is unknown, then the bias bubu and the factors pupu are assumed to be zero. The same applies for item i with b_i, q_i and y_i.  Just as for SVD, the parameters are learned using a SGD on the regularized squared error objective.
+
 Baselines are initialized to 0. User and item factors are randomly initialized according to a normal distribution, which can be tuned using the init_mean and init_std_dev parameters.
+
 You have control over the learning rate γ and the regularization term λ. Both can be different for each kind of parameter (see below). By default, learning rates are set to 0.005 and regularization terms are set to 0.02.
+
 Parameters:
 n_factors – The number of factors. Default is 20.
 n_epochs – The number of iteration of the SGD procedure. Default is 20.
