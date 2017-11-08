@@ -6,12 +6,18 @@ import pandas as pd
 
 
 def parse(path):
+    '''
+    Reading the data
+    '''
     g = gzip.open(path, 'rb')
     for l in g:
         yield eval(l)
 
 
 def getDF(path):
+    '''
+    Transform the data into Pandas DataFrame
+    '''
     i = 0
     df = {}
     for d in parse(path):
@@ -21,6 +27,10 @@ def getDF(path):
 
 
 def assignment(item, wanted_categories):
+    '''
+    Assign item intro categories that we pre-defined
+    Otherwise assign an empty string
+    '''
     counter = 0
     for category in wanted_categories:
         if category in item:
@@ -31,19 +41,21 @@ def assignment(item, wanted_categories):
 
 
 def assignment2(item, wanted_categories):
-
-    counter = 0
+    '''
+    Items could have multiple categories.
+    Only extract categories we defined
+    '''
     category = ''
     for category2 in wanted_categories:
         if category2 in item:
             category = category + " " + category2
-            counter += 1
-        else:
-            counter += 1
     return category.strip()
 
 
 def pick_categories(row, wanted_categories):
+    '''
+    For each game, we want to clean the categories column so that it is more readable
+    '''
     each_game_category = row['categories']
     category = ''
     if len(each_game_category) > 1:
@@ -61,6 +73,9 @@ def pick_categories(row, wanted_categories):
 
 
 def mult_cat(row, wanted_categories):
+    '''
+    Categories items with multiple categories as "multi_support"
+    '''
     each_game_category = row['cat']
     counter = 0
     for category2 in wanted_categories:
@@ -73,6 +88,9 @@ def mult_cat(row, wanted_categories):
 
 
 def define_categories(meta, wanted_categories):
+    '''
+    Apply categorizing methods and store their categories
+    '''
     different_cat = meta.apply(lambda row: pick_categories(row), axis=1)
     meta['cat'] = different_cat
     meta2 = meta[meta['cat'] != '']
@@ -83,6 +101,9 @@ def define_categories(meta, wanted_categories):
 
 
 def get_clean_data(meta):
+    '''
+    Only the items with non-empty strings are wanted
+    '''
     cat_table = pd.crosstab(index=meta['cat2'], columns="count")
     print(cat_table.sort_values(by='count', ascending=0))
     meta_clean = meta[meta['cat2'].notnull()]
@@ -93,6 +114,9 @@ def get_clean_data(meta):
 
 
 def merge_review_meta(meta_clean, reviews):
+    '''
+    Merge pre-processed meta data with review data
+    '''
     merged_df = pd.merge(meta_clean, reviews, on='asin', how='inner')
     merged_df['date'] = [dateutil.parser.parse(x) for x in merged_df['reviewTime']]
     merged_df = merged_df.drop(merged_df.columns[[1, 4, 5, 6, 8, 9]], 1)
@@ -109,6 +133,9 @@ def merge_review_meta(meta_clean, reviews):
 
 
 def random_item_sampling(sample, relevant_data, wanted_size_by_category):
+    '''
+    For each category, pick 75%, 85%, and 90% quantile values and sample equally from each bin
+    '''
     for category in wanted_size_by_category:
         size = wanted_size_by_category[category]
         each_batch_size = int(size/4)
@@ -135,6 +162,9 @@ def random_item_sampling(sample, relevant_data, wanted_size_by_category):
 
 
 def random_user_sampling(relevant_data):
+    '''
+    For each user, pick 90%, 95%, and 98.5% quantile values and sample equally from each bin
+    '''
     each_batch_size = 5000
     num_table = pd.crosstab(index=relevant_data['reviewerID'], columns="count")
 
@@ -178,6 +208,8 @@ def main():
 
     # cat_prop.plot.bar()
     # plt.show()
+
+    ## calcuate the number of items required following the distribution of the categories
     wanted_size_by_category = cat_prop['count'].div(rows).multiply(100).to_dict()
     for item in wanted_categories:
         wanted_size_by_category[item] = math.ceil(wanted_size_by_category[item])
@@ -191,6 +223,7 @@ def main():
     print("the total sample size is : ", sum(wanted_size_by_category.values()))
     print("---------------------------------------------\n")
 
+    ## Store sampled items and users
     sample = {}
     sampled_items = random_item_sampling(sample, items_with_sampled_user, wanted_size_by_category)
 
