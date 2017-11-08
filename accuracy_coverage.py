@@ -62,7 +62,7 @@ def svdpp(data, training, testing):
     print('SVDpp:', param)
     # RMSE against parameters
     result_df = pd.DataFrame.from_dict(grid_search.cv_results)
-    result_df.to_csv('svdpp_rmse_against_param.csv')
+    result_df.to_csv('data/svdpp_rmse_against_param.csv')
 
 
     # fit model using the optimized parameters
@@ -198,7 +198,7 @@ def knn(data, training, testing):
     print('KNNBasic:', param)
     # RMSE against parameters
     result_df = pd.DataFrame.from_dict(knn_grid_search.cv_results)
-    result_df.to_csv('knn_rmse_against_param.csv')
+    result_df.to_csv('data/knn_rmse_against_param.csv')
 
 
     # fit model using the optimized parameters
