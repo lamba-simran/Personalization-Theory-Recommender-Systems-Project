@@ -123,10 +123,11 @@ If user u is unknown, then the bias b_u and the factors p_u are assumed to be ze
 </table>
 
 where e_ui=r_ui−r̂_ui. These steps are performed over all the ratings of the trainset and repeated n_epochs times. Baselines are initialized to 0. User and item factors are randomly initialized according to a normal distribution, which can be tuned using the init_mean and init_std_dev parameters.
+
 You also have control over the learning rate γ and the regularization term λ. Both can be different for each kind of parameter (see below). By default, learning rates are set to 0.005 and regularization terms are set to 0.02.
  
  
-Parameters:
+Parameters:<br />
 n_factors – The number of factors. Default is 100. <br />
 n_epochs – The number of iteration of the SGD procedure. Default is 20.<br />
 biased (bool) – Whether to use baselines (or biases). See note above. Default is True.<br />
@@ -159,26 +160,27 @@ Baselines are initialized to 0. User and item factors are randomly initialized a
 
 You have control over the learning rate γ and the regularization term λ. Both can be different for each kind of parameter (see below). By default, learning rates are set to 0.005 and regularization terms are set to 0.02.
 
-Parameters:
-n_factors – The number of factors. Default is 20.
-n_epochs – The number of iteration of the SGD procedure. Default is 20.
-init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
-init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.
-lr_all – The learning rate for all parameters. Default is 0.007.
-reg_all – The regularization term for all parameters. Default is 0.02.
-lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.
-lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.
-lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.
-lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.
-lr_yj – The learning rate for yjyj. Takes precedence over lr_all if set. Default is None.
-reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.
-reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.
-reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.
-reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.
-reg_yj – The regularization term for yjyj. Takes precedence over reg_all if set. Default is None.
+Parameters:<br />
+n_factors – The number of factors. Default is 20.<br />
+n_epochs – The number of iteration of the SGD procedure. Default is 20.<br />
+init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.<br />
+init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.<br />
+lr_all – The learning rate for all parameters. Default is 0.007.<br />
+reg_all – The regularization term for all parameters. Default is 0.02.<br />
+lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.<br />
+lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.<br />
+lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.<br />
+lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.<br />
+lr_yj – The learning rate for yjyj. Takes precedence over lr_all if set. Default is None.<br />
+reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.<br />
+reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.<br />
+reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.<br />
+reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.<br />
+reg_yj – The regularization term for yjyj. Takes precedence over reg_all if set. Default is None.<br />
 verbose – If True, prints the current epoch. Default is False.
 
-NMF
+### 3.)NMF
+
 A collaborative filtering algorithm based on Non-negative Matrix Factorization.
 This algorithm is very similar to SVD. The prediction r̂ ui is set as:
 <table class="image">
@@ -194,19 +196,19 @@ The optimization procedure is a (regularized) stochastic gradient descent with a
 This algorithm is highly dependent on initial values. User and item factors are uniformly initialized between init_low and init_high. 
 
  
-Parameters:
-n_factors – The number of factors. Default is 15.
-n_epochs – The number of iteration of the SGD procedure. Default is 50.
-biased (bool) – Whether to use baselines (or biases). Default is False.
-reg_pu – The regularization term for users λuλu. Default is 0.06.
-reg_qi – The regularization term for items λiλi. Default is 0.06.
-reg_bu – The regularization term for bubu. Only relevant for biased version. Default is 0.02.
-reg_bi – The regularization term for bibi. Only relevant for biased version. Default is 0.02.
-lr_bu – The learning rate for bubu. Only relevant for biased version. Default is 0.005.
-lr_bi – The learning rate for bibi. Only relevant for biased version. Default is 0.005.
-init_low – Lower bound for random initialization of factors. Must be greater than 0 to ensure non-negative factors. Default is 0.
-init_high – Higher bound for random initialization of factors. Default is 1.
-verbose – If True, prints the current epoch. Default is False.
+Parameters:<br />
+n_factors – The number of factors. Default is 15.<br />
+n_epochs – The number of iteration of the SGD procedure. Default is 50.<br />
+biased (bool) – Whether to use baselines (or biases). Default is False.<br />
+reg_pu – The regularization term for users λuλu. Default is 0.06.<br />
+reg_qi – The regularization term for items λiλi. Default is 0.06.<br />
+reg_bu – The regularization term for bubu. Only relevant for biased version. Default is 0.02.<br />
+reg_bi – The regularization term for bibi. Only relevant for biased version. Default is 0.02.<br />
+lr_bu – The learning rate for bubu. Only relevant for biased version. Default is 0.005.<br />
+lr_bi – The learning rate for bibi. Only relevant for biased version. Default is 0.005.<br />
+init_low – Lower bound for random initialization of factors. Must be greater than 0 to ensure non-negative factors. Default is 0.<br />
+init_high – Higher bound for random initialization of factors. Default is 1.<br />
+verbose – If True, prints the current epoch. Default is False.<br />
 
 ## Evaluation
 
