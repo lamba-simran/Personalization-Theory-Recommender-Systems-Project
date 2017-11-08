@@ -235,20 +235,20 @@ Following are the figures for all the models:
 
 ### Coverage
 
-For coverage, we used top n (where n=1,3,5) predictions to calculate the total number of unique recommendations over the test set using all algos. The above number was then divided by the total number of items in the sample.
+For coverage, we used top n (where n=1,3,5) predictions to calculate the total number of unique recommendations over the test set using all algos. The above number was then divided by the total number of items in the sample and thus it's percentages on the vertical axises.
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 1 (Percent) </caption>
+<caption align="bottom"> Coverage: Top 1 (% vs. models) </caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top1.png"></td></tr>
 </table>
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 3 (Percent)</caption>
+<caption align="bottom"> Coverage: Top 3 (% vs. models)</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top3.png"></td></tr>
 </table>
 
 <table class="image">
-<caption align="bottom"> Coverage: Top 5 (Percent) </caption>
+<caption align="bottom"> Coverage: Top 5 (% vs. models) </caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/top5.png"></td></tr>
 </table>
 
