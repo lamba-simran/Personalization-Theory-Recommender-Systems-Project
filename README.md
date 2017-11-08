@@ -126,21 +126,21 @@ You also have control over the learning rate γ and the regularization term λ. 
  
  
 Parameters:
-n_factors – The number of factors. Default is 100. 
-n_epochs – The number of iteration of the SGD procedure. Default is 20.
-biased (bool) – Whether to use baselines (or biases). See note above. Default is True.
-init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
-init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.
-lr_all – The learning rate for all parameters. Default is 0.005.
-reg_all – The regularization term for all parameters. Default is 0.02.
-lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.
-lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.
-lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.
-lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.
-reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.
-reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.
-reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.
-reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.
+n_factors – The number of factors. Default is 100. <br />
+n_epochs – The number of iteration of the SGD procedure. Default is 20.<br />
+biased (bool) – Whether to use baselines (or biases). See note above. Default is True.<br />
+init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.<br />
+init_std_dev – The standard deviation of the normal distribution for factor vectors initialization. Default is 0.1.<br />
+lr_all – The learning rate for all parameters. Default is 0.005.<br />
+reg_all – The regularization term for all parameters. Default is 0.02.<br />
+lr_bu – The learning rate for bubu. Takes precedence over lr_all if set. Default is None.<br />
+lr_bi – The learning rate for bibi. Takes precedence over lr_all if set. Default is None.<br />
+lr_pu – The learning rate for pupu. Takes precedence over lr_all if set. Default is None.<br />
+lr_qi – The learning rate for qiqi. Takes precedence over lr_all if set. Default is None.<br />
+reg_bu – The regularization term for bubu. Takes precedence over reg_all if set. Default is None.<br />
+reg_bi – The regularization term for bibi. Takes precedence over reg_all if set. Default is None.<br />
+reg_pu – The regularization term for pupu. Takes precedence over reg_all if set. Default is None.<br />
+reg_qi – The regularization term for qiqi. Takes precedence over reg_all if set. Default is None.<br />
 verbose – If True, prints the current epoch. Default is False.
 
 
