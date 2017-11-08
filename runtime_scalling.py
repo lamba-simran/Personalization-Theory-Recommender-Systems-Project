@@ -10,22 +10,22 @@ def load_data():
     '''
 
     #for sample_700
-    file_path = os.path.expanduser('sample_700.csv')
+    file_path = os.path.expanduser('data/sample_700.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data0 = Dataset.load_from_file(file_path, reader=reader)
 
     #for sample_1400
-    file_path = os.path.expanduser('sample_1400.csv')
+    file_path = os.path.expanduser('data/sample_1400.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data1 = Dataset.load_from_file(file_path, reader=reader)
 
     #for sample_2100
-    file_path = os.path.expanduser('sample_2100.csv')
+    file_path = os.path.expanduser('data/sample_2100.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data2 = Dataset.load_from_file(file_path, reader=reader)
 
     #for sample_full
-    file_path = os.path.expanduser('sampled_data.csv')
+    file_path = os.path.expanduser('data/sampled_data.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data3 = Dataset.load_from_file(file_path, reader=reader)
 

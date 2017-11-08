@@ -286,7 +286,7 @@ def svd(data, training, testing):
 
 def main():
     # import data and divide it into 5-folds
-    file_path = os.path.expanduser('sampled_data.csv')
+    file_path = os.path.expanduser('data/sampled_data.csv')
     reader = Reader(line_format='user item rating', sep=',')
     data = Dataset.load_from_file(file_path, reader=reader)
     data.split(n_folds=5)  # data can now be used normally

@@ -168,7 +168,7 @@ def main():
     # meta_clean = get_clean_data(meta)
     # relevant_data, distinct_user = merge_review_meta(meta_clean, reviews)
 
-    relevant_data = pd.read_csv('/Users/taeyoungchoi/Documents/Fall 17/Personalization Theory/clean_data.csv')
+    relevant_data = pd.read_csv('data/clean_data.csv')
     random_user_id = random_user_sampling(relevant_data)
     items_with_sampled_user = relevant_data[relevant_data['reviewerID'].isin(random_user_id)]
     distinct_user = items_with_sampled_user.drop_duplicates(['asin'])
@@ -196,8 +196,7 @@ def main():
 
     hundred_items = items_with_sampled_user[items_with_sampled_user['asin'].isin(sampled_items)].drop(['Unnamed: 0', 'date'], 1)
     print(len(set(hundred_items.asin)), len(set(hundred_items.reviewerID)))
-    hundred_items.to_csv("sampled.csv")
-
+    hundred_items.to_csv("data/sampled.csv")
 
 
 if __name__ == "__main__":
