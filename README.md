@@ -126,7 +126,7 @@ You also have control over the learning rate γ and the regularization term λ. 
  
  
 Parameters:
-n_factors – The number of factors. Default is 100. 
+n_factors – The number of factors. Default is 100. \n
 n_epochs – The number of iteration of the SGD procedure. Default is 20.
 biased (bool) – Whether to use baselines (or biases). See note above. Default is True.
 init_mean – The mean of the normal distribution for factor vectors initialization. Default is 0.
