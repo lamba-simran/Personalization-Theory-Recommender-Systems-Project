@@ -302,7 +302,28 @@ However, even though SVD++ works best for this particular sample, we feel that a
 ## Misc
 ### Outline for the second part
 Dataset: 
--expand our dataset and include all observations. Add more datasets connected with current Amazon Video Games, such as Electronics dataset, computer accessories dataset and more. So, that we can recommend related products i.e. if user has bought a certain video game, we can recommend graphic carts, certain type of keyboards and etc. 
+-Include all observations from the dataset used for this projects
+-Add related datasets. 
+     As we working with Amazon Video Game dataset, we thought that we could add Electronics dataset from the same Amazon Merchandise Dataset( http://jmcauley.ucsd.edu/data/amazon), which will allow us to reccomend certain type of graphic carts, keybaords, etc. suitable for that particular type of the game.
+-Combine datasets. 
+     Adding new datasets means we should find smart ways to combine them. As one is able to observe, video games dataset actually contains platforms on which they could be played and based on that we want to reccomend a user a certain type of electronics. Furthermore, we want to make use of the 'also bought' meta description of the item, which tells what other products were bought with thic particular product and identify those 'also bought' links with video games and electronics datasets. 
+     
+     Timeline: 
+ - Nov 7
+    Discuss datasets and ideas for the second part. HW: do research of models and packages that could be used till next meeting
+ - Nov 19
+    Discuss models that could be used and divide the work between people in the team. HW:research maths behind the models chosen, install all necessary software packages till next meeting, play with code and simpler versions, while datasets would be prepared till next meetin
+ - Nov 22 
+     After Datasets are prepared, discuss findings of the closer research and datapreparing. HW: Prepare all the codes and the models running till next meeting
+ -Nov 25    
+     Discuss results of the running of the models, try to tune them and find solutions to the problems that came up during running of the models. HW: tune models
+ - Nov 29 
+      Dicuss all the results that came up and any other steps that could be introduced
+
+ 
+      
+     
+     
 
 Model: 
 We want to use parallel hybrid model, which includes SVD++, Approximate nearest neighbors, recommender for novelty or serendipity, ALS collaborative filtering using Spark and Frequent pattern mining / Association rules using Spark
