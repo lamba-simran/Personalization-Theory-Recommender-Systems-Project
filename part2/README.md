@@ -14,8 +14,9 @@ In October 2016, Amazon posted $575 million in operating income for the third qu
 
 Even though Amazon is still currently focused on growth for both of its two main businesses, it is crucial for it to arrest its losses within the e-commerce business.
 
+
 <table class="image">
-<caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
+<caption align="bottom">Amazon profit by category</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/Amazon_Profit.png" width="720"></td></tr>
 </table>
 
