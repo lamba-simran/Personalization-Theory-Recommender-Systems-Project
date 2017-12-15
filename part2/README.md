@@ -32,7 +32,7 @@ Targeting the electronics/accessories market was the next logical step as recomm
 
 Recommendation systems have been used in e-commerce websites like Amazon to enable filtering through large observation and information space in order to provide recommendations in the information space that user does not have any observation. 
 
-Our key objectives for this project is to operate on Amazon data set for Electronics/Accessories and Video Games and provide accurate, novel, and unique recommendation to users. Another key objective of this exercise is to design recommender systems and go into detail by exploring hyper-parameters to measure the impact of popular items or users. Another major objective is to dabble with tolls such as Spark and Python, further exploring various tools and libraries that are available and at our disposal.
+Our key objectives for this project is to operate on Amazon data set for Electronics/Accessories and Video Games and provide accurate, novel, and unique recommendation to users. Another key objective of this exercise is to design recommender systems and go into detail by exploring hyper-parameters to measure the impact of popular items or users. Another major objective is to dabble with technologies such as Spark and Python, further exploring various tools and libraries that are available and at our disposal. We believe that the amount of data that we are tackling (even after sampling) would require faster processing technology.
 
 For this purpose, we have used time-stamped user rating data from Amazon, which cumulatively have close to 10 million user-item ratings. The source for the data can be found at: http://jmcauley.ucsd.edu/data/amazon/links.html
 
@@ -46,12 +46,22 @@ for 50,953 products.
 -  Amazon product data: Electronics that contains 7,824,482 reviews for
 498,196 products.
 
-We explored the distribution of users, who submitted reviews after January 1st, 2011. As seen in the histogram below, we have an extremely skewed dataset with 75% of users submitted only single review and 95% of users submitted less than two reviews. Furthermore, 99% of users submitted less than four reviews. If we were to sample 10,000 users using this highly sparse
- data, we weren't able to meet the requirement, which is the size of the dataset being less than 100 items.
+We explored the distribution of users, who submitted reviews after January 1st, 2011. As seen in the histogram below, we have an extremely skewed dataset with 75% of users submitted only single review and 95% of users submitted less than two reviews. Furthermore, 99% of users submitted less than four reviews.
 
 <table class="image">
 <caption align="bottom">Histrogram of the number of reviews submitted by users</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/byRatingNum.png" width="720"></td></tr>
 </table>
+
+## Benchmark
+
+Based on the for Part 1 of the project, we believed that that SVD++ is the best model to implement for the that sample because it has the best accuracy and does better than the others. Even though running time for training is relatively big and the testing time is about the average across all previous models, we think that training could be done offline and thus overall running will time not be affected. Furthermore, the Coverage for SVD++ was close to 30%, which we find sufficient for this data, while RMSE was close to 0.25.
+
+Hence, we chose this model from all of our models as the baseline/benchmark to compare our new models to. Keeping in line with the objectives, coverage and novelty trump accuracy for this part of the project as we want to ensure that we are able to increase profits of the suppliers (and hence Amazon) by recommending more profitable, less popular items. We would like to improve the coverage and novelty as compared to baseline data, and are ready to accept a decrease in accuracy if needed, while keeping tabs on it all the same.
+
+## Algorithms
+
+We decided to build, explore and compare two recommendation models: Locality Sensitive Hashing (LSH), from scratch using python, and ALS Matrix Factorization in Pyspark.
+
 
 
