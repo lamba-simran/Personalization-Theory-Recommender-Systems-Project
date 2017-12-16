@@ -279,5 +279,13 @@ The main intuition behind this was to try and provide more recommended items in 
 The plan was to run all the recommendations for all the Users by the frequent item sets obtained from the FPM implementation with minimum support ranging close to 5 transactions and confidence close to 0.1. However, we were only able to implement FPM and unable to create a hybrid model. We believe that using a hybrid approach, we would have improved the total accuracy of the model. 
 
 
+## References
+
+
+
+
+FPM MLLib:http://spark.apache.org/docs/2.2.0/mllib-frequent-pattern-mining.html
+FPM:https://fp-growth.readthedocs.io/en/latest/readme.html
+
 
 
