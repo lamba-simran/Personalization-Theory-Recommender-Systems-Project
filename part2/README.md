@@ -182,7 +182,8 @@ Due to the size of the dataset, we decided to use pyspark and its parallelized c
 Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
 
 The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all users. The hash function takes the form [(a(item) + b)%p], and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
-```
+
+```python
 p = self.item_num
 while not found:
     prime = True
@@ -198,7 +199,8 @@ b = random.randint(0, p)
 ```
 
 We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate the probability that two items collide in the same bucket. We found the optimal values for band size and hash size based on the RMSE scores calculated using 5-fold cross validation.
-```
+
+```python
 data = Accuracy.CrossValidate(input, output, n_folds=5)
 data.split()
     for i in range(2, 5):
@@ -213,8 +215,9 @@ data.split()
     print("best param: ", tuned_param[0], tuned_param[1])
 ```
 
-After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k (k=1,3,5) predictions for each user to calculate RMSE and coverage parameters. Once we had the average ratings of the top , we then compared them to the actual ratings of the items to calculate the RMSE. To calculate the coverage, we took the ratio of total number of unique items recommended upon the total number items in the sample utilized.  
-```
+After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k (k=1,3,5) predictions for each user to calculate RMSE and coverage parameters. Once we had the average ratings of the top , we then compared them to the actual ratings of the items to calculate the RMSE. To calculate the coverage, we took the ratio of total number of unique items recommended upon the total number items in the sample utilized.
+
+```python
 for i in range(y.shape[0]):
     for j in y.iloc[i]['rating']:
         if j in self.result.iloc[i]['item']:
@@ -248,9 +251,9 @@ Hash Size = 2 |0.286	       |0.521	         |0.534         |
 Hash Size = 3 |0.437	       |0.525	         |0.535         |
 Hash Size = 4	|0.499        |0.532	         |0.536         |
 
-Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to 18.26%. However, in absolute terms, this implies that over 200K unique items are being recommended, as compared to only around 50% in the previous case.
+Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to **18.26%**. However, in absolute terms, this implies that over **200K** unique items are being recommended, as compared to only around 50% in the previous case.
 
-One of the most encouraging results of the above was the fact that our novelty was 77.58%. We had split our sample 80/20 intro train and test_old, then used a test_new (same size as test_old). Then we got the top k recommendations for both the test data sets. For k=5 on using above data, we found that the number 77.58% of the recommendations for the test_new set were different (and novel) than the recommendations in test_old. LSH ws extremely impressive in providing new recommendations to new users
+One of the most encouraging results of the above was the fact that our novelty was **77.58%**. We had split our sample 80/20 intro train and test_old, then used a test_new (same size as test_old). Then we got the top k recommendations for both the test data sets. For k=5 on using above data, we found that the number 77.58% of the recommendations for the test_new set were different (and novel) than the recommendations in test_old. LSH ws extremely impressive in providing new recommendations to new users
 
 ## Extension of the Model – Creating a hybrid model (LSH, FPM/Association Rules)
 
