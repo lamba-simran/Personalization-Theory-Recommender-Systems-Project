@@ -205,3 +205,5 @@ Hash Size = 2 |0.286	       |0.521	         |0.534         |
 Hash Size = 3 |0.437	       |0.525	         |0.535         |
 Hash Size = 4	|0.499        |0.532	         |0.536         |
 
+Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to 18.26%. However, in absolute terms, this implies that over 200K unique items are being recommended, as compared to only around 50% in the previous case.
+
