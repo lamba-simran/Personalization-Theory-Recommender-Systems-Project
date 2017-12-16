@@ -281,6 +281,9 @@ The main intuition behind this was to try and provide more recommended items in 
 
 The plan was to run all the recommendations for all the Users by the frequent item sets obtained from the FPM implementation with minimum support ranging close to 5 transactions and confidence close to 0.1. However, we were only able to implement FPM and unable to create a hybrid model. We believe that using a hybrid approach, we would have improved the total accuracy of the model. 
 
+## Data
+
+[data folder](https://github.com/taeyoung-choi/personalization-theory/tree/master/part2/data) contains all the data set we used for the analysis. Each csv file is a random sample of users with ratings of different sizes. For example, 1-10.csv and 1-1000.csv contains 10\% and 0.1\% of randomly selected users from the original dataset. And old.csv and new.csv contains the ratings separated by the median of the timestamp. These two datasets were used to calculate novelty.
 
 ## References
 
