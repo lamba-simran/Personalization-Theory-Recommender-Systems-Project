@@ -76,7 +76,9 @@ The implementation of ALS in spark.mllib has the following parameters:
 -	implicitPrefs specifies whether to use the explicit feedback ALS variant or one adapted for implicit feedback data.
 -	alpha is a parameter applicable to the implicit feedback variant of ALS that governs the baseline confidence in preference observations.
 
-Since ALS only accepts numeric datatypes, we had to change the user_IDs and item_IDs from strings to numeric.
+Since ALS only accepts numeric datatypes, we had to change the userIDs and itemIDs from strings to numeric.
+
+Changing the userID from string to numeric:
 
 ```python
 
@@ -109,6 +111,43 @@ ratings1.show()
 |A1LT2ILVBRDMN2|
 |A3SAN0HBKL4O51|
 +--------------+
+only showing top 20 rows
+```
+```python
+with_index = ratings1.rdd.zipWithIndex()
+distinct_val = with_index.map(lambda x: (Row(userID = x[0][0], id =x[1])))
+distinct_val = distinct_val.toDF()
+
+#ratings_df = sqlContext.read.format('com.databricks.spark.csv').options(header=True, inferSchema=False).schema(ratings_df_schema).load(ratings_filename)
+#ratings_df = raw_ratings_df.drop('Timestamp')
+#ratings_df.cache()
+distinct_val.show()
+```
+```
++---+--------------+
+| id|        userID|
++---+--------------+
+|  0| AFS5ZGZ2M3ZGV|
+|  1|A18FTRFQQ141CP|
+|  2|A2GPNXFUUV51ZZ|
+|  3|A3GF7FD6065R2H|
+|  4|A16W4IDX9O70NU|
+|  5| A4035XND6J8CS|
+|  6|A15K7HV1XD6YWR|
+|  7|A3FZ6D8NP9775P|
+|  8| AA36DB7PNNJP2|
+|  9|A3PDGWYC08DXF4|
+| 10|A37JOONBIY5POU|
+| 11|A29XPB4YTMCH7N|
+| 12| AC8WXA642LUCJ|
+| 13|A2S7O09DKY30TH|
+| 14|A1G37NGYG23QG2|
+| 15|  A44UKZE6XEV9|
+| 16| AQJQP7RPKQGI9|
+| 17|A3BDHHIUI08PXH|
+| 18|A1LT2ILVBRDMN2|
+| 19|A3SAN0HBKL4O51|
++---+--------------+
 only showing top 20 rows
 ```
 
