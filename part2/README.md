@@ -78,10 +78,37 @@ The implementation of ALS in spark.mllib has the following parameters:
 
 ## Locality Sensitive Hashing (LSH)
 
-Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class in the class.
+Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
 
 The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all items. The hash function takes the form [(a.item + b)%p], where b and p are prime, and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
 
+'''python
+def create_hash_functions(self):
+        function_list = []
+        # p is a prime number that is greater than max possible value of x
+        found = False
+        p = self.item_num
+        while not found:
+            prime = True
+            for i in range(2, p):
+                if p % i == 0:
+                    prime = False
+            if prime:
+                found = True
+            else:
+                p += 1
+        # Corman et al as very readable information in section 11.3.3 pp 265-268.
+        # https://mitpress.mit.edu/books/introduction-algorithms
+        for i in range(self.band_size):
+            for j in range(self.hash_size):
+                # a is any odd number you can choose between 1 to p-1 inclusive.
+                a = random.randrange(1, p, 2)
+                # b is any number you can choose between 0 to p-1 inclusive.
+                b = random.randint(0, p)
+                function_list.append([a, b, p])
+        self.hash_function = function_list
+'''        
+        
 Then we will take the minimum hash value for each item and function, only considering the items that have been rated by at least due to the nature of our dataset. We thus create the signature matrix, that only contains the minimum values of hashed indices.
 
 We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate whether the or not the items are hashed to the same bucket or not.
