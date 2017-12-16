@@ -1,8 +1,4 @@
-"""
-Created on Oct 24, 2017
-@author: TYchoi
 
-"""
 
 import random
 import pandas as pd
