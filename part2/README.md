@@ -207,7 +207,7 @@ Hash Size = 4	|0.499        |0.532	         |0.536         |
 
 Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to 18.26%. However, in absolute terms, this implies that over 200K unique items are being recommended, as compared to only around 50% in the previous case.
 
-# Extension of the Model – Creating a hybrid model (LSH, FPM/Association Rules)
+## Extension of the Model – Creating a hybrid model (LSH, FPM/Association Rules)
 
 We observed that even though our coverage has improved, there has been an overall decline in accuracy. To counter this, we tried to implement a hybrid approach of LSH and an undirected data mining technique in the form of Frequent Pattern Mining and Association Rules.
 
