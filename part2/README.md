@@ -165,7 +165,7 @@ For User Y, we find N Products to Promote:
 ```python
 model.recommendProducts(196,10)
 ```
-After making predictions for all ratings, we evaluated the 
+After making predictions for all ratings, we evaluated the model first on the train set and then on the test set. The results were as follows:
 
 
 
