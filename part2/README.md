@@ -207,3 +207,29 @@ Hash Size = 4	|0.499        |0.532	         |0.536         |
 
 Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to 18.26%. However, in absolute terms, this implies that over 200K unique items are being recommended, as compared to only around 50% in the previous case.
 
+# Extension of the Model – Creating a hybrid model (LSH, FPM/Association Rules)
+
+We observed that even though our coverage has improved, there has been an overall decline in accuracy. To counter this, we tried to implement a hybrid approach of LSH and an undirected data mining technique in the form of Frequent Pattern Mining and Association Rules.
+
+Since we could not implement Association Rules in pyspark, we decided to use pyspark only for data processing and then utilize python for the purpose of executing FPM and Association Rules. The key parameters to consider while creating item sets was the minimum support level (i.e. the minimum number of times a set of items appears in the code) as well as the confidence level for an association rule (the ratio of the number of transactions in which the item set appears).
+
+```python
+
+#Frequent Item Set Mining
+relim_input = itemmining.get_relim_input(transactions)
+report = itemmining.relim(relim_input, min_support=5)
+print report
+
+#Association Rules
+rules = assocrules.mine_assoc_rules(report, min_support=5, min_confidence=0.1)
+print rules
+
+```
+
+The main intuition behind this was to try and provide more recommended items in conjunction with LSH recommendations. For instance, let’s say that a particular user was recommended Item1, Item2 and Item3, (where Item3 is not a particularly accurate recommendation, and has a predicted average rating less than a certain threshold) by the LSH model, while the item set {Item1, Item2, Item42, Item52} has the desired minimum support and confidence levels, then we can replace Item3 with Item42 or Item 52; while increasing the accuracy and maintaining the coverage. We realized that we may not find too many such instances, but wanted to executre nonetheless.
+
+The plan was to run all the recommendations for all the Users by the frequent item sets obtained from the FPM implementation with minimum support ranging close to 5 transactions and confidence close to 0.1. However, we were only able to implement FPM and unable to create a hybrid model. We believe that using a hybrid approach, we would have improved the total accuracy of the model. 
+
+
+
+
