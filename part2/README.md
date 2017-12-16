@@ -150,6 +150,24 @@ distinct_val.show()
 +---+--------------+
 only showing top 20 rows
 ```
+We similarly change the itemID from string to numeric. 
+
+Next, we transform the dataframe into a RDD and further spilt it into train set and test set. The model is fit on the train set and tuned using a number of parameter combinations. We found the best rmse for the following parameters:
+
+For Product X, we find N Users to Sell To:
+
+```python
+model.recommendUsers(242,10)
+```
+
+For User Y, we find N Products to Promote:
+
+```python
+model.recommendProducts(196,10)
+```
+After making predictions for all ratings, we evaluated the 
+
+
 
 ## Locality Sensitive Hashing (LSH)
 
