@@ -168,6 +168,7 @@ model.recommendProducts(196,10)
 After making predictions for all ratings, we evaluated the model first on the train set and then on the test set. The results were as follows:
 
 Train Set RMSE: 0.5608492447656984
+
 Test Set RMSE: 1.6515262287005992
 
 
