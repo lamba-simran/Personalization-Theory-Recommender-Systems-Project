@@ -161,18 +161,29 @@ The first step of the process is to create a signature matrix composed of hash v
 
 We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate the probability that two items collide in the same bucket. We found the optimal values for band size and hash size based on the RMSE scores calculated using 5-fold cross validation.
 
-After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k predictions for each user to calculate RMSE and coverage parameters.
+After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k (k=1,3,5) predictions for each user to calculate RMSE and coverage parameters. Once we had the average ratings of the top , we then compared them to the actual ratings of the items to calculate the RMSE. To calculate the coverage, we took the ratio of total number of unique items recommended upon the total number items in the sample utilized.  
 
 Below are the results for the LSH execution for over 100,000 users. This was done to evaluate the performance of the model based on the Hash Size and the Band Size. We changes the values of those parameters and obtained the following results: 
 
 <table class="image">
-<caption align="bottom">LSH RMSE</caption>
+<caption align="bottom">LSH RMSE k=5</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_RMSE_Values.png" width="720"></td></tr>
 </table>
 
+|RMSE         |Band Size = 2|Band Size = 3  |Band Size = 4 |
+|-------------|-------------|:-------------:|-------------:|
+Hash Size = 2 |1.646	       |1.652	         |1.645         |
+Hash Size = 3 |1.642	       |1.646	         |1.642         |
+Hash Size = 4	|1.642        |1.641	         |1.641         |
+
 <table class="image">
-<caption align="bottom">LSH Coverage</caption>
+<caption align="bottom">LSH Coverage k=5</caption>
 <tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_Coverage_Values.png" width="720"></td></tr>
 </table>
 
+|Coverage     |Band Size = 2|Band Size = 3  |Band Size = 4 |
+|-------------|-------------|---------------|-------------:|
+Hash Size = 2 |0.286	       |0.521	         |0.534         |
+Hash Size = 3 |0.437	       |0.525	         |0.535         |
+Hash Size = 4	|0.499        |0.532	         |0.536         |
 
