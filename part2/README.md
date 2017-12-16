@@ -182,10 +182,47 @@ Due to the size of the dataset, we decided to use pyspark and its parallelized c
 Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
 
 The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all users. The hash function takes the form [(a(item) + b)%p], and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
+```
+p = self.item_num
+while not found:
+    prime = True
+    for i in range(2, p):
+        if p % i == 0:
+            prime = False
+    if prime:
+        found = True
+    else:
+        p += 1
+a = random.randrange(1, p, 2)
+b = random.randint(0, p)
+```
 
 We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate the probability that two items collide in the same bucket. We found the optimal values for band size and hash size based on the RMSE scores calculated using 5-fold cross validation.
+```
+data = Accuracy.CrossValidate(input, output, n_folds=5)
+data.split()
+    for i in range(2, 5):
+        for j in range(2, 5):
+            print(i, j)
+            accuracy = data.evaluate_minhash(i, j)
+            mean_score = accuracy['Mean'][0]
+            if len(tuned_param) == 0:
+                tuned_param = [i, j, mean_score]
+            elif tuned_param[2] > mean_score:
+                tuned_param = [i, j, mean_score]
+    print("best param: ", tuned_param[0], tuned_param[1])
+```
 
 After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k (k=1,3,5) predictions for each user to calculate RMSE and coverage parameters. Once we had the average ratings of the top , we then compared them to the actual ratings of the items to calculate the RMSE. To calculate the coverage, we took the ratio of total number of unique items recommended upon the total number items in the sample utilized.  
+```
+for i in range(y.shape[0]):
+    for j in y.iloc[i]['rating']:
+        if j in self.result.iloc[i]['item']:
+            d.append(self.result.iloc[i]['item'][j])
+            p.append(y.iloc[i]['rating'][j])
+
+rmse = np.sqrt(((np.array(d) - np.array(p))**2).mean())
+```
 
 Below are the results for the LSH execution for over 100,000 users. This was done to evaluate the performance of the model based on the Hash Size and the Band Size. We changes the values of those parameters and obtained the following results: 
 
