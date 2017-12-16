@@ -84,8 +84,33 @@ ratings1=ratings.select('userID').distinct()
 ratings1.show()
 
 ```
-
-
+```
++--------------+
+|        userID|
++--------------+
+| AFS5ZGZ2M3ZGV|
+|A18FTRFQQ141CP|
+|A2GPNXFUUV51ZZ|
+|A3GF7FD6065R2H|
+|A16W4IDX9O70NU|
+| A4035XND6J8CS|
+|A15K7HV1XD6YWR|
+|A3FZ6D8NP9775P|
+| AA36DB7PNNJP2|
+|A3PDGWYC08DXF4|
+|A37JOONBIY5POU|
+|A29XPB4YTMCH7N|
+| AC8WXA642LUCJ|
+|A2S7O09DKY30TH|
+|A1G37NGYG23QG2|
+|  A44UKZE6XEV9|
+| AQJQP7RPKQGI9|
+|A3BDHHIUI08PXH|
+|A1LT2ILVBRDMN2|
+|A3SAN0HBKL4O51|
++--------------+
+only showing top 20 rows
+```
 
 ## Locality Sensitive Hashing (LSH)
 
