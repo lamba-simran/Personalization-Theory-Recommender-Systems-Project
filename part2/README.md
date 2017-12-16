@@ -175,7 +175,7 @@ Test Set RMSE: 1.6515262287005992
 
 
 
-## Locality Sensitive Hashing (LSH)
+## [Locality Sensitive Hashing (LSH)](https://github.com/taeyoung-choi/personalization-theory/blob/master/part2/LSH.py)
 
 Due to the size of the dataset, we decided to use pyspark and its parallelized computing features to process the data. We first converted the database into RDD objects and then grouped ratings by user, with each row being all the ratings for all the items that the user has rated. This gives us a very convenient data object to utilize for the purposes of LSH execution. Then we randomly shuffled users so that we can then splice the data into different samples and run a permutation of different parameters, using different sample sizes. 
 
