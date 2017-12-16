@@ -78,8 +78,12 @@ The implementation of ALS in spark.mllib has the following parameters:
 
 Since ALS only accepts numeric datatypes, we had to change the user_IDs and item_IDs from strings to numeric.
 
-```pythonratings1=ratings.select('userID').distinct()
-ratings1.show()```
+```python
+
+ratings1=ratings.select('userID').distinct()
+ratings1.show()
+
+```
 
 
 
