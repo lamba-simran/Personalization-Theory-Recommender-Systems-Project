@@ -153,6 +153,8 @@ only showing top 20 rows
 
 ## Locality Sensitive Hashing (LSH)
 
+Due to the size of the dataset, we decided to use pyspark and its parallelized computing features to process the data. We first converted the database into RDD objects and then grouped ratings by user, with each row being all the ratings for all the items that the user has rated. This gives us a very convenient data object to utilize for the purposes of LSH execution. Then we randomly shuffled users so that we can then splice the data into different samples and run a permutation of different parameters, using different sample sizes. 
+
 Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
 
 The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all users. The hash function takes the form [(a(item) + b)%p], and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
