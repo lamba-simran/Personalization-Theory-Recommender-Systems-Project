@@ -170,7 +170,7 @@ Below are the results for the LSH execution for over 100,000 users. This was don
 
 <table class="image">
 <caption align="bottom">LSH Coverage</caption>
-<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_ Coverage_Values.png" width="720"></td></tr>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_Coverage_Values.png" width="720"></td></tr>
 </table>
 
 
