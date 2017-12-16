@@ -161,8 +161,16 @@ We then band the signature matrix into different bands and rows. For our purpose
 
 After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k predictions for each user to calculate RMSE and coverage parameters.
 
+Below are the results for the LSH execution for over 100,000 users. This was done to evaluate the performance of the model based on the Hash Size and the Band Size. We changes the values of those parameters and obtained the following results: 
 
+<table class="image">
+<caption align="bottom">LSH RMSE</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_RMSE_Values.png" width="720"></td></tr>
+</table>
 
-
+<table class="image">
+<caption align="bottom">LSH Coverage</caption>
+<tr><td><img src="https://github.com/taeyoung-choi/personalization-theory/blob/master/plot/LSH_ Coverage_Values.png" width="720"></td></tr>
+</table>
 
 
