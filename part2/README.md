@@ -282,10 +282,9 @@ The plan was to run all the recommendations for all the Users by the frequent it
 ## References
 
 
-
+Hash Function : https://mitpress.mit.edu/books/introduction-algorithms
 
 FPM MLLib:http://spark.apache.org/docs/2.2.0/mllib-frequent-pattern-mining.html
+
 FPM:https://fp-growth.readthedocs.io/en/latest/readme.html
-
-
 
