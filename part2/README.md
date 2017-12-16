@@ -80,7 +80,7 @@ The implementation of ALS in spark.mllib has the following parameters:
 
 Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
 
-The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all items. The hash function takes the form [(a.item + b)%p], where b and p are prime, and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
+The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all users. The hash function takes the form [(a.item + b)%p], where b and p are prime, and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
 
 '''python
 def create_hash_functions(self):
@@ -109,7 +109,7 @@ def create_hash_functions(self):
         self.hash_function = function_list
 '''        
         
-Then we will take the minimum hash value for each item and function, only considering the items that have been rated by at least due to the nature of our dataset. We thus create the signature matrix, that only contains the minimum values of hashed indices.
+Then we will take the minimum hash value for each user and function, only considering the items that have been rated by at least one user due to the nature of our dataset. We thus create the signature matrix, that only contains the minimum values of hashed indices.
 
 We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate whether the or not the items are hashed to the same bucket or not.
 
