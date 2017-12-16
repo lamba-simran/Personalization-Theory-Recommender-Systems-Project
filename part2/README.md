@@ -169,10 +169,13 @@ model.recommendProducts(196,10)
 ```
 After making predictions for all ratings, we evaluated the model first on the train set and then on the test set. The results were as follows:
 
-Train Set RMSE: 0.5608492447656984
+**Train Set RMSE: 0.5608492447656984**
 
-Test Set RMSE: 1.6515262287005992
+**Test Set RMSE: 1.6515262287005992**
 
+We also tried to evaluate **catalog coverage** for our model which came out be as low as **3.848 %** since coverage is impacted to a greater degree when non-popular items are not rated/recommended for any users and ALS recommends popular items over and over again. 
+
+In orderto get a better coverage, we decided to implement a type of **Approximate Nearest Neighbors** recommendation algorithm.
 
 
 ## [Locality Sensitive Hashing (LSH)](https://github.com/taeyoung-choi/personalization-theory/blob/master/part2/LSH.py)
