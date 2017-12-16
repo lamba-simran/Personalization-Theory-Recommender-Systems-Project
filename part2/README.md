@@ -82,8 +82,7 @@ Since we are utilizing extremely sparse dataset, we decided to use LSH to map ne
 
 The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all users. The hash function takes the form [(a(item) + b)%p], and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
 
-We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate whether the or not the items are hashed to the same bucket or not.
-
+We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate the probability that two items collide in the same bucket. We found the optimal values for band size and hash size based on the RMSE scores calculated using 5-fold cross validation.
 
 After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample. we then get the top-k predictions for each user to calculate RMSE and coverage parameters.
 
