@@ -76,6 +76,13 @@ The implementation of ALS in spark.mllib has the following parameters:
 -	implicitPrefs specifies whether to use the explicit feedback ALS variant or one adapted for implicit feedback data.
 -	alpha is a parameter applicable to the implicit feedback variant of ALS that governs the baseline confidence in preference observations.
 
+Since ALS only accepts numeric datatypes, we had to change the user_IDs and item_IDs from strings to numeric.
+
+```pythonratings1=ratings.select('userID').distinct()
+ratings1.show()```
+
+
+
 ## Locality Sensitive Hashing (LSH)
 
 Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class, and get the nearest neighbors.
