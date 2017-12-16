@@ -65,7 +65,7 @@ Hence, we chose this model from all of our models as the baseline/benchmark to c
 
 We decided to build, explore and compare two recommendation models: Locality Sensitive Hashing (LSH), from scratch using python, and ALS Matrix Factorization in Pyspark.
 
-## Alternating Least Squares (ALS) Matrix Factorization method
+## [Alternating Least Squares (ALS) Matrix Factorization method](https://github.com/taeyoung-choi/personalization-theory/blob/master/part2/ALS.ipynb)
 
 ALS works by trying to find the optimal representation of a user and a product matrix – which when combined, should accurately represent the original dataset. The genius part of ALS is that it alternates between finding the optimal values for the user matrix and the product matrix. 
 
