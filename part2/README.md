@@ -22,9 +22,9 @@ Even though Amazon is still currently focused on growth for both of its two main
 
 ## Problem Statement
 
-Accuracy and coverage in tandem hold the most business value for a company like Amazon. For instance, the least popular items tend to provide the most profit if bought, due to higher margins. However, they are usually not recommended over popular items, as most recommender systems still put large focus only on accuracy, targeting only low hanging fruits.
+Accuracy, coverage, novelty in tandem hold the most business value for a company like Amazon. For instance, the least popular items tend to provide the most profit if bought, due to higher margins. However, they are usually not recommended over popular items, as most recommender systems still put large focus only on accuracy, targeting only low hanging fruits.
 
-We want the best mix of accuracy, converge, and serendipity to not only provide the best recommendation, but from a business perspective, the most profitable recommendations. We had initially chosen Video Games as the category to focus on as Steam has been at the forefront of Video Games recommendation and sales, and we strongly feel that it is a major category that can improve profitability. 
+We want the best mix of accuracy, converge, and novelty to not only provide the best recommendation, but from a business perspective, the most profitable recommendations. We had initially chosen Video Games as the category to focus on as Steam has been at the forefront of Video Games recommendation and sales, and we strongly feel that it is a major category that can improve profitability. 
 
 Targeting the electronics/accessories market was the next logical step as recommendations can then tie in with a category that is popular and extremely relevant to the aforementioned Video Games Category.
 
@@ -32,7 +32,9 @@ Targeting the electronics/accessories market was the next logical step as recomm
 
 Recommendation systems have been used in e-commerce websites like Amazon to enable filtering through large observation and information space in order to provide recommendations in the information space that user does not have any observation. 
 
-Our key objectives for this project is to operate on Amazon data set for Electronics/Accessories and Video Games and provide accurate, novel, and unique recommendation to users. Another key objective of this exercise is to design recommender systems and go into detail by exploring hyper-parameters to measure the impact of popular items or users. Another major objective is to dabble with technologies such as Spark and Python, further exploring various tools and libraries that are available and at our disposal. We believe that the amount of data that we are tackling (even after sampling) would require faster processing technology.
+Our key objectives for this project is to operate on Amazon data set for Electronics/Accessories and Video Games and provide accurate, novel, and varied recommendation to users. We want to ensure that we maintain the accuracy, while improving novelty if 
+
+Another key objective of this exercise is to design recommender systems and go into detail by exploring hyper-parameters to measure the impact of popular items or users. Another major objective is to dabble with technologies such as Spark and Python, further exploring various tools and libraries that are available and at our disposal. We believe that the amount of data that we are tackling (even after sampling) would require faster processing technology.
 
 For this purpose, we have used time-stamped user rating data from Amazon, which cumulatively have close to 10 million user-item ratings. The source for the data can be found at: http://jmcauley.ucsd.edu/data/amazon/links.html
 
@@ -211,6 +213,8 @@ Hash Size = 4	|0.499        |0.532	         |0.536         |
 
 Once the above is implemented, we observed that teh best combination (for accuracy and coverage) was for Hash Size and Band Size being 4 and 3 respectively. We used that to calculate the accuracy and coverage by increasing the sample to 1M ratings and observed that the RMSE remains relatively same at 1.63, but coverage reduces to 18.26%. However, in absolute terms, this implies that over 200K unique items are being recommended, as compared to only around 50% in the previous case.
 
+One of the most encouraging results of the above was the fact that our novelty was 77.58%. We had split our sample 80/20 intro train and test_old, then used a test_new (same size as test_old). Then we got the top k recommendations for both the test data sets. For k=5 on using above data, we found that the number 77.58% of the recommendations for the test_new set were different (and novel) than the recommendations in test_old. LSH ws extremely impressive in providing new recommendations to new users
+
 ## Extension of the Model – Creating a hybrid model (LSH, FPM/Association Rules)
 
 We observed that even though our coverage has improved, there has been an overall decline in accuracy. To counter this, we tried to implement a hybrid approach of LSH and an undirected data mining technique in the form of Frequent Pattern Mining and Association Rules.
@@ -230,7 +234,7 @@ print rules
 
 ```
 
-The main intuition behind this was to try and provide more recommended items in conjunction with LSH recommendations. For instance, let’s say that a particular user was recommended Item1, Item2 and Item3, (where Item3 is not a particularly accurate recommendation, and has a predicted average rating less than a certain threshold) by the LSH model, while the item set {Item1, Item2, Item42, Item52} has the desired minimum support and confidence levels, then we can replace Item3 with Item42 or Item 52; while increasing the accuracy and maintaining the coverage. We realized that we may not find too many such instances, but wanted to executre nonetheless.
+The main intuition behind this was to try and provide more recommended items in conjunction with LSH recommendations. For instance, let’s say that a particular user was recommended Item1, Item2 and Item3, (where Item3 is not a particularly accurate recommendation, and has a predicted average rating less than a certain threshold) by the LSH model, while the item set {Item1, Item2, Item42, Item52} has the desired minimum support and confidence levels, then we can replace Item3 with Item42 or Item 52; while increasing the accuracy and maintaining the coverage, while increasing novelty. We realized that we may not find too many such instances, but wanted to executre nonetheless.
 
 The plan was to run all the recommendations for all the Users by the frequent item sets obtained from the FPM implementation with minimum support ranging close to 5 transactions and confidence close to 0.1. However, we were only able to implement FPM and unable to create a hybrid model. We believe that using a hybrid approach, we would have improved the total accuracy of the model. 
 
