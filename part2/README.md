@@ -76,6 +76,18 @@ The implementation of ALS in spark.mllib has the following parameters:
 -	implicitPrefs specifies whether to use the explicit feedback ALS variant or one adapted for implicit feedback data.
 -	alpha is a parameter applicable to the implicit feedback variant of ALS that governs the baseline confidence in preference observations.
 
+## Locality Sensitive Hashing (LSH)
+
+Since we are utilizing extremely sparse dataset, we decided to use LSH to map nearby data points to the same code by using hash functions that collide for similar points. For our purposes, we want a function that maps nearby points to the same hash value. To create recommendations, we utilized minhash function, as descripted in class in the class.
+
+The first step of the process is to create a signature matrix composed of hash values that has a set of signatures for all items. The hash function takes the form [(a.item + b)%p], where b and p are prime, and operate on the item row index. Also, ‘p’ is a prime number that is greater than the maximum possible value of the number of items, a is any odd number that can be chosen between 1 and p-1, and b is any number that can be chosen from 0 to p-1. 
+
+Then we will take the minimum hash value for each item and function, only considering the items that have been rated by at least due to the nature of our dataset. We thus create the signature matrix, that only contains the minimum values of hashed indices.
+
+We then band the signature matrix into different bands and rows. For our purposes, we utilized a combination of different values of band size (number of bands) and hash size (the number of hash functions within each band). This will dictate whether the or not the items are hashed to the same bucket or not.
+
+After the above steps have been completed, we then altered the process to obtain approximate ratings for all items that are in the same bucket, based on the ratings of the other items in the same bucket. To get the approximate average rating of an item, we used other items in the same bucket. We did this for all the items in our sample.
+
 
 
 
