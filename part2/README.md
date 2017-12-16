@@ -175,7 +175,7 @@ After making predictions for all ratings, we evaluated the model first on the tr
 
 We also tried to evaluate **catalog coverage** for our model which came out be as low as **3.848 %** since coverage is impacted to a greater degree when non-popular items are not rated/recommended for any users and ALS recommends popular items over and over again. 
 
-In orderto get a better coverage, we decided to implement a type of **Approximate Nearest Neighbors** recommendation algorithm.
+In order to get a better coverage, we decided to implement a type of **Approximate Nearest Neighbors** recommendation algorithm.
 
 
 ## [Locality Sensitive Hashing (LSH)](https://github.com/taeyoung-choi/personalization-theory/blob/master/part2/LSH.py)
@@ -291,3 +291,4 @@ FPM MLLib:http://spark.apache.org/docs/2.2.0/mllib-frequent-pattern-mining.html
 
 FPM:https://fp-growth.readthedocs.io/en/latest/readme.html
 
+ALS: http://www.learnbymarketing.com/644/recsys-pyspark-als/
